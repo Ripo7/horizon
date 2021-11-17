@@ -1,0 +1,90 @@
+<div *ngIf="connectedUser" class="troopers-wrapper">
+    <div *ngFor="let trooper of connectedUser.troopers" class="trooper" (click)="showTrooperDetails(trooper)">
+        <img 
+                [ngClass]="{'red': trooper.properties.emissiveColor === 'Red', 
+                            'light-blue': trooper.properties.emissiveColor === 'Light Blue',
+                            'dark-blue': trooper.properties.emissiveColor === 'Dark Blue',
+                            'pink': trooper.properties.emissiveColor === 'Pink', 
+                            'purple': trooper.properties.emissiveColor === 'Purple', 
+                            'green': trooper.properties.emissiveColor === 'Green',
+                            'orange': trooper.properties.emissiveColor === 'Orange',
+                            'blue-sky': trooper.properties.emissiveColor === 'Blue Sky',
+                            'fire': trooper.properties.emissiveColor === 'Fire'
+                        }" 
+                [src]="trooper.image"/>
+        <label>{{trooper.name}} | #{{trooper.id}}</label>
+        <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer;" routerLink="/battle">Ready to fight</label>
+        <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer;" routerLink="/battle">In battle</label>
+    </div>
+</div>
+<div *ngIf="showTrooper && trooperToShow" class="backdrop" (click)="backShowTrooper()">
+
+</div>
+<div *ngIf="showTrooper && trooperToShow" class="trooper-details">
+    <div class="details-bloc border-bottom">
+        <div class="bloc">
+            <img [src]="trooperToShow.image"/>
+        </div>
+        <div class="bloc bloc-name">
+            <label class="name">{{trooperToShow.name}} 
+                <span class="material-icons" *ngIf="!doEditTroopName" (click)="editTrooperName()">
+                    edit
+                </span>
+                <span class="material-icons" *ngIf="doEditTroopName && newTrooperName.length >= 3" (click)="validNewTroopName()">
+                    done
+                </span>
+                <span class="material-icons" *ngIf="doEditTroopName && newTrooperName.length < 3" (click)="cancelNewTroopName()">
+                    close
+                </span>
+            </label>
+            <input class="input-name" [(ngModel)]="newTrooperName" *ngIf="doEditTroopName" type="text"/>
+            <label class="id">Trooper: #{{trooperToShow.id}}</label>
+            <label class="rarity">Rarity: {{trooperToShow.rarity}}</label>
+        </div>
+    </div>
+    <div class="details-bloc">
+        <div class=properties-wrapper>
+            <div class="properties">
+                <div> 
+                    <label class="label">Color: </label>
+                    <label>{{trooperToShow.properties.color}}</label>
+                </div>
+                <div>
+                    <label class="label">Emissive Color: </label>
+                    <label>{{trooperToShow.properties.emissiveColor}}</label>
+                </div>
+                <div>
+                    <label class="label">Armor: </label>
+                    <label>{{trooperToShow.properties.armor}}</label>
+                </div>
+                <div>
+                    <label class="label">Helmet Top: </label>
+                    <label>{{trooperToShow.properties.helmetTop}}</label>
+                </div>
+                <div>
+                    <label class="label">Accessory: </label>
+                    <label>{{trooperToShow.properties.accessory}}</label>
+                </div>
+                <div>
+                    <label class="label">Visor: </label>
+                    <label>{{trooperToShow.properties.visor}}</label>
+                </div>
+                <div>
+                    <label class="label">Respirator: </label>
+                    <label>{{trooperToShow.properties.respirator}}</label>
+                </div>
+                <div>
+                    <label class="label"> Gem: </label>
+                    <label>{{trooperToShow.properties.gem}}</label>
+                </div>
+                <div>
+                    <label class="label">Support Gem: </label>
+                    <label>{{trooperToShow.properties.supportGem}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="bloc">
+            lalal
+        </div>
+    </div>
+</div>

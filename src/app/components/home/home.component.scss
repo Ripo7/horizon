@@ -1,0 +1,138 @@
+.home-wrapper-1 {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.home-title {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 40%;
+    width: 80%;
+    img.horizon {
+        width: 80%;
+    }
+
+    img.civil-war {
+        width: 40%;
+    }
+    
+    label {
+        font-size: xx-large;
+    }
+}
+
+.bloc-header {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.home-subtitle {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+.home-description {
+    margin-top: 40px;
+    color: white;
+    width: 98%;
+    background-color: #121212;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    z-index: 999;
+    box-shadow: 0 0 10px black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p {
+        font-size: x-large;
+        color: #ffef86;
+    }
+}
+
+.play-button {
+    font-size: xx-large;
+    color: #ffef86;
+    cursor: pointer;
+    border: solid 3px #ffef86;
+    padding: 10px 40px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.play-button:hover {
+    background-color: #ffef86;
+    color: #121212;
+}
+
+.home-wrapper-2 {
+    color: white;
+    display: flex;
+    justify-content: center;
+
+    .trooper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .red-title {
+            font-size: xx-large;
+            color: #f16d24;
+            font-weight: bold;
+        }
+
+        .blue-title {
+            font-size: xx-large;
+            color: #41faff;
+            font-weight: bold;
+        }
+
+        img {
+            width: 300px;
+            margin: 60px 60px 10px 60px;
+            border-radius: 50%;
+            transition: box-shadow 0.5s;
+            padding-top: 10px;
+        }
+
+        img.red:hover {
+            box-shadow: 0 0 40px #f16d24;
+        }
+
+        img.blue:hover {
+            box-shadow: 0 0 40px #41faff;
+        }
+
+        img.red.show {
+            box-shadow: 0 0 40px #f16d24;
+        }
+
+        img.blue.show {
+            box-shadow: 0 0 40px #41faff;
+        }
+    }
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    background-color: #121212;
+    padding: 20px 60px;
+
+    label {
+        color: white;
+    }
+
+    p {
+        font-size: x-large;
+    }
+
+    .leader-title {
+        color: #ffef86;
+    }
+}

@@ -1,0 +1,55 @@
+<div class="home-wrapper-1">
+    <div class="bloc-header">
+        <div class="home-title">
+            <img class="horizon" src="../../../assets/images/hor1zonproject.png"> <br>
+            <img class="civil-war" src="../../../assets/images/civil-war.png"> 
+        </div>
+    </div>
+    <div class="home-description">
+        <p>The Empire Collapsed, the war is raging ! Trooper, your side needs you.</p>
+        <div style="width: 50%;">
+            Hor1zon Civil War is a fan-made game which takes place in the Hor1zon Project Universe. <br>
+            It opposes two sides in the ruins of a very old empire : the first one is called Demetos League which is commanded by the General #6725, <br> better known as the Golden-Fire Trooper. <br>
+            The second one is called The Council of Elda, <br> commanded by General #82, AKA The Golden-Ice Trooper. <br>
+        </div>
+        <p>Join one side and fight for the victory !</p>
+        <div class="play-button" routerLink="/battle">
+            Play now
+        </div>
+    </div>
+</div>
+<div class="home-wrapper-2">
+    <div class="trooper">
+        <img [ngClass]="{'red': true, 'show': sideToSee === 'red'}" src="../../../assets/images/gold_trooper_red.png" (click)="seeSide('red')"/>
+        <label class="red-title">Demetos League</label>
+    </div>
+    <div class="trooper">
+        <img [ngClass]="{'blue': true, 'show': sideToSee === 'blue'}" src="../../../assets/images/gold_trooper_blue.png" (click)="seeSide('blue')"/>
+        <label class="blue-title">Council Of Elda</label>
+    </div>
+</div>
+<div class="side-details">
+    <div class="details" *ngIf="sideToSee === 'red'">
+        <p class="leader-title">Leader: </p>
+        <label class="leader-name">The Golden-Fire Trooper, General #6725</label>
+        <p class="leader-title">Story: </p>
+        <label class="leader-name">
+            The league of demetos was created just after the assassination of the emperor 
+            to avenge his death and impose the law of the empire in all its territory.
+            The league is composed of senators and generals still loyal to the imperial 
+            family and is based on Demetos, the homeworld of the empire.
+            Now they have to fight the traitors of Elda and reconquer all the lands that joined them
+        </label>
+    </div>   
+    <div class="details" *ngIf="sideToSee === 'blue'">
+        <p class="leader-title">Leader: </p>
+        <label class="leader-name">The Golden-Ice Trooper, General #82</label>
+        <p class="leader-title">Story: </p>
+        <label class="leader-name">
+            The Council of Elda was born two years before the death of the emperor, 
+            when the generals of the planet Elda, conquered by the empire 200 years ago, 
+            decided to betray the emperor and put one of their own on the throne. 
+            After the murder of the emperor while visiting Elda, 
+            the council decided to secede and go to war against what was left of the empire.</label>
+    </div>       
+</div>
