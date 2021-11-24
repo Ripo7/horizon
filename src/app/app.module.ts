@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MyTroopersComponent } from './components/my-troopers/my-troopers.component';
 import { BattleComponent } from './components/battle/battle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RulesComponent } from './components/rules/rules.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     HomeComponent,
     MyTroopersComponent,
-    BattleComponent
+    BattleComponent,
+    RulesComponent
   ],
   imports: [
     BrowserModule,
