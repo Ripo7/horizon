@@ -9,6 +9,9 @@ import { MyTroopersComponent } from './components/my-troopers/my-troopers.compon
 import { BattleComponent } from './components/battle/battle.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RulesComponent } from './components/rules/rules.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { RulesComponent } from './components/rules/rules.component';
     HomeComponent,
     MyTroopersComponent,
     BattleComponent,
-    RulesComponent
+    RulesComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

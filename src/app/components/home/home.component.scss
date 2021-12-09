@@ -52,6 +52,7 @@
     p {
         font-size: x-large;
         color: #ffef86;
+        font-family: "Heavitas";
     }
 }
 
@@ -61,6 +62,7 @@
     cursor: pointer;
     border: solid 3px #ffef86;
     padding: 10px 40px;
+    font-family: "Heavitas";
     transition: background-color 0.5s, color 0.5s;
 }
 
@@ -134,5 +136,27 @@
 
     .leader-title {
         color: #ffef86;
+        font-family: "Heavitas";
+    }
+}
+
+.button-connect {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 30px;
+    button {
+        padding: 20px;
+        border: none;
+        background-color: #121212;
+        border: solid 2px transparent;
+        color: #ffef86;
+        border-radius: 10px;
+        transition: box-shadow 0.5s, border 0.5s;
+        cursor: pointer;
+    }
+    button:hover {
+        box-shadow: 0 0 10px black;
+        border: solid 2px #ffef86;
     }
 }

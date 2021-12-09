@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="home-wrapper-1">
     <div class="bloc-header">
         <div class="home-title">
@@ -52,4 +54,16 @@
             After the murder of the emperor while visiting Elda, 
             the council decided to secede and go to war against what was left of the empire.</label>
     </div>       
+</div>
+
+<div *ngIf="!isUserLogged" class="button-connect" (click)="goToLogin()">
+    <button>
+        Connect
+    </button>
+</div>
+
+<div *ngIf="isUserLogged" class="button-connect" (click)="logout()">
+    <button>
+        Disconnect
+    </button>
 </div>

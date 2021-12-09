@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -15,11 +16,12 @@ export class MyTroopersComponent implements OnInit {
 
   newTrooperName: string = '';
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.connectedUser = this.usersService.getConnectedUser();
-    console.log("this.connectedUser", this.connectedUser);
+    this.usersService.getUserInfo(JSON.parse(JSON.stringify(this.localStorage.get('userId')))).subscribe((userInfo: any) => {
+      this.connectedUser = userInfo[0];
+    })
   }
 
   showTrooperDetails(trooper: any) {
@@ -31,22 +33,6 @@ export class MyTroopersComponent implements OnInit {
     this.showTrooper = false;
     this.trooperToShow = null;
     this.doEditTroopName = false;
-  }
-
-  editTrooperName() {
-    this.doEditTroopName = true;
-  }
-
-  validNewTroopName() {
-    console.log("this.newTrooperName", this.newTrooperName);
-    this.usersService.setTrooperName(this.trooperToShow.id,  this.newTrooperName);
-    this.doEditTroopName = false;
-    this.newTrooperName = '';
-  }
-
-  cancelNewTroopName() {
-    this.doEditTroopName = false;
-    this.newTrooperName = '';
   }
 
 }
