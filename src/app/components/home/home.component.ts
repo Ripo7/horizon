@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ContractService } from 'src/app/services/contract.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UsersService } from 'src/app/services/users.service';
+
+declare const window: any;
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,10 @@ export class HomeComponent implements OnInit {
 
   isUserLogged: boolean = false;
 
-  constructor(private router: Router, private localStorage: LocalStorageService, private userService: UsersService) { }
+  constructor(private router: Router, 
+    private localStorage: LocalStorageService, 
+    private userService: UsersService,
+    private contractService: ContractService) { }
 
   ngOnInit(): void {
     this.isUserLogged = this.localStorage.isUserLog();
@@ -25,7 +31,13 @@ export class HomeComponent implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(['login']);
+    //  this.router.navigate(['login']);
+    
+    this.contractService.openMetamask().then(data => {
+      if (data) {
+        this.localStorage.set('address', data);
+      }
+    });
   }
 
   logout() {
