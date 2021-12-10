@@ -42,7 +42,7 @@ export class ContractService {
     console.log("this.web3",this.web3);
     let amout = 0.1 *  mintNumber
     console.log("amount", String(amout));
-    this.web3.eth.sendTransaction({from: userAddress, to: '0x1E673E737bae0547793C77501803a62Dfa45D126',
+    this.web3.eth.sendTransaction({from: userAddress, to: '0xCDa65dd497FB27f6aC9A82841152534459A2eD23',
         value: this.web3.utils.toWei(String(amout), 'ether')
       })
       .once('sending')
