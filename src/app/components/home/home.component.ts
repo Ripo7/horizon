@@ -5,6 +5,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UsersService } from 'src/app/services/users.service';
 
 declare const window: any;
+declare const weiAmount: any;
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
 
   seeSide(side: string) {
     this.sideToSee = side;
+    console.log("consweiAmount", weiAmount);
   }
 
   goToLogin() {
@@ -43,6 +45,10 @@ export class HomeComponent implements OnInit {
   logout() {
     this.userService.logout();
     window.location.reload();
+  }
+
+  pay() {
+    this.contractService.sendPayment('yo', 1);
   }
 
 }

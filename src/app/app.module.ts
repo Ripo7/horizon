@@ -12,6 +12,7 @@ import { RulesComponent } from './components/rules/rules.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
+import { HomeEthComponent } from './components/home-eth/home-eth.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginComponent } from './components/login/login.component';
     BattleComponent,
     RulesComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    HomeEthComponent
   ],
   imports: [
     BrowserModule,

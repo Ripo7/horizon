@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContractService } from 'src/app/services/contract.service';
 
 @Component({
   selector: 'app-rules',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RulesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private contractService: ContractService) { }
 
   ngOnInit(): void {
+  }
+
+  pay() {
   }
 
 }

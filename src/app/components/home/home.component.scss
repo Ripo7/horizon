@@ -160,3 +160,25 @@
         border: solid 2px #ffef86;
     }
 }
+
+.button-pay {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 999;
+    padding: 30px;
+    button {
+        padding: 20px;
+        border: none;
+        background-color: red;
+        border: solid 2px transparent;
+        color: #ffef86;
+        border-radius: 10px;
+        transition: box-shadow 0.5s, border 0.5s;
+        cursor: pointer;
+    }
+    button:hover {
+        box-shadow: 0 0 10px black;
+        border: solid 2px #ffef86;
+    }
+}

@@ -1,23 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(84,89,100,1) 0%, rgba(150,156,160,1) 100%);
-    font-family: 'Altone';
+    background: #17171e;
     font-weight: bold;
     margin: 0;
 }
 
-@font-face {
-    font-family: "AltoneBold";
-    src: local("AltoneBold"), url(./assets/fonts/AltoneTrial-Bold.ttf) format("truetype");
-}
+// @font-face {
+//     font-family: "AltoneBold";
+//     src: local("AltoneBold"), url(./assets/fonts/AltoneTrial-Bold.ttf) format("truetype");
+// }
 
-@font-face {
-    font-family: "Altone";
-    src: local("Altone"), url(./assets/fonts/AltoneTrial-Regular.ttf) format("truetype");
-}
+// @font-face {
+//     font-family: "Altone";
+//     src: local("Altone"), url(./assets/fonts/AltoneTrial-Regular.ttf) format("truetype");
+// }
 
-@font-face {
-    font-family: "Heavitas";
-    src: local("Heavitas"), url(./assets/fonts/Heavitas.ttf) format("truetype");
-}
+// @font-face {
+//     font-family: "Heavitas";
+//     src: local("Heavitas"), url(./assets/fonts/Heavitas.ttf) format("truetype");
+// }
