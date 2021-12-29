@@ -85,11 +85,15 @@
         .red-title {
             font-size: xx-large;
             color: #f16d24;
+            font-family: "Heavitas";
             font-weight: bold;
+            margin-top: 20px;
         }
 
         .blue-title {
             font-size: xx-large;
+            margin-top: 20px;
+            font-family: "Heavitas";
             color: #41faff;
             font-weight: bold;
         }
@@ -143,6 +147,7 @@
 .button-connect {
     position: fixed;
     top: 0;
+    z-index: 999;
     right: 0;
     padding: 30px;
     button {
@@ -154,9 +159,31 @@
         border-radius: 10px;
         transition: box-shadow 0.5s, border 0.5s;
         cursor: pointer;
+        box-shadow: 0 0 10px yellow;
     }
     button:hover {
-        box-shadow: 0 0 10px black;
+        border: solid 2px #ffef86;
+    }
+}
+
+.button-connect-1 {
+    position: fixed;
+    top: 100px;
+    z-index: 999;
+    right: 0;
+    padding: 30px;
+    button {
+        padding: 20px;
+        border: none;
+        background-color: #121212;
+        border: solid 2px transparent;
+        color: #ffef86;
+        border-radius: 10px;
+        transition: box-shadow 0.5s, border 0.5s;
+        cursor: pointer;
+        box-shadow: 0 0 10px yellow;
+    }
+    button:hover {
         border: solid 2px #ffef86;
     }
 }

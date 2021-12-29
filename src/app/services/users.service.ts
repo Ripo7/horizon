@@ -101,8 +101,7 @@ export class UsersService {
   }
 
   logout() {
-    this.localStorage.remove('token');
-    this.localStorage.remove('userId')
+    this.localStorage.remove('address');
   }
 
 
@@ -114,5 +113,9 @@ export class UsersService {
         trooper.name = newName;
       }
     })
+  }
+
+  connectWithWallet() {
+    
   }
 }

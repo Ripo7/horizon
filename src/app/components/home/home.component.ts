@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContractService } from 'src/app/services/contract.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { MoralisService } from 'src/app/services/moralis.service';
 import { UsersService } from 'src/app/services/users.service';
 
 declare const window: any;
@@ -15,36 +16,39 @@ declare const weiAmount: any;
 export class HomeComponent implements OnInit {
 
   sideToSee: string = 'red';
-
-  isUserLogged: boolean = false;
+  showButton = false;
 
   constructor(private router: Router, 
     private localStorage: LocalStorageService, 
     private userService: UsersService,
-    private contractService: ContractService) { }
+    private contractService: ContractService,
+    private morService: MoralisService) {
+    }
+
 
   ngOnInit(): void {
-    this.isUserLogged = this.localStorage.isUserLog();
+    setTimeout(() => this.showButton = true, 500);
   }
-
+  
   seeSide(side: string) {
     this.sideToSee = side;
     console.log("consweiAmount", weiAmount);
   }
 
   goToLogin() {
-    //  this.router.navigate(['login']);
-    
-    this.contractService.openMetamask().then(data => {
-      if (data) {
-        this.localStorage.set('address', data);
-      }
-    });
+    this.morService.loginWithMetamask();
+  }
+
+  goToLoginWallet() {
+    this.morService.loginWalletConnect();
   }
 
   logout() {
-    this.userService.logout();
-    window.location.reload();
+    this.morService.logout();
+  }
+
+  isUserLogged() {
+    return this.morService.isUserLogged();
   }
 
   pay() {

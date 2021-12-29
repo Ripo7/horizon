@@ -15,7 +15,7 @@
             The second one is called The Council of Elda, <br> commanded by General #82, AKA The Golden-Ice Trooper. <br>
         </div>
         <p>Join one side and fight for the victory !</p>
-        <div class="play-button" (click)="pay()" routerLink="/battle">
+        <div class="play-button" routerLink="/battle">
             Play now
         </div>
     </div>
@@ -56,19 +56,19 @@
     </div>       
 </div>
 
-<div class="button-pay" (click)="pay()">
+<div *ngIf="!isUserLogged() && showButton" class="button-connect" (click)="goToLogin()">
     <button>
-        pay
+        Connect Metamask
     </button>
 </div>
 
-<div *ngIf="!isUserLogged" class="button-connect" (click)="goToLogin()">
+<div class="button-connect-1" (click)="goToLoginWallet()">
     <button>
-        Connect
+        Connect Wallet Connect
     </button>
 </div>
 
-<div *ngIf="isUserLogged" class="button-connect" (click)="logout()">
+<div *ngIf="isUserLogged() && showButton" class="button-connect" (click)="logout()">
     <button>
         Disconnect
     </button>

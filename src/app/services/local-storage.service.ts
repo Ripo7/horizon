@@ -20,13 +20,8 @@ export class LocalStorageService {
     }
 
     isUserLog() {
-        if (this.get('token')) {
-          if (jwtDecode<any>(JSON.stringify(this.get('token'))).userId == this.get('userId')){
-            console.log("icicicici");
-            return true;
-          } else {
-            return false;
-          }
+        if (this.get('address')) {
+          return true;
         } else {
           return false;
         }

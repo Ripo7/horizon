@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { MoralisService } from './services/moralis.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hor1zon-civil-war';
+
+  constructor(private moralisService: MoralisService, private cdr: ChangeDetectorRef) {
+    this.moralisService.setChangeDetector(cdr);
+  }
+
+  
 }

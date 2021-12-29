@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  moralis: {
+    appId: 'v3lpBcMarcYd32SeINIz8BKdFUbUOyYGANsXEW9G',
+    serverUrl: 'https://63miqb59ssrn.usemoralis.com:2053/server'
+  },
   backUrl: 'http://13.38.51.28:3000'
 };
 

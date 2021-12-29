@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+
+import { Connection, SystemProgram, Transaction, clusterApiUrl } from '@solana/web3.js';
+
 import Web3 from "web3";
 
 declare const window: any;
@@ -35,6 +38,21 @@ export class ContractService {
       }
       this.web3 = new Web3(window.ethereum);
       this.addresses = addresses;
+      console.log("this.web3", this.web3);
+      const minABI = [
+        // balanceOf
+        {
+          "constant": true,
+          "inputs": [{"name":"_owner","type":"address"}],
+          "name": "balanceOf",
+          "outputs": [{"name":"balance","type":"uint256"}],
+          "type": "function"
+        }
+      ];
+      const contract = new this.web3.eth.Contract(minABI, '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82');
+      const result = await contract.methods.balanceOf('0x1E673E737bae0547793C77501803a62Dfa45D126').call(); 
+      const format = this.web3.utils.fromWei(result); // 29803630.997051883414242659
+      console.log("result", result);
       return addresses.length ? addresses[0] : null;
   };
 
@@ -55,5 +73,4 @@ export class ContractService {
         console.log("receipt final", receipt);
       });
   }
-
 }
