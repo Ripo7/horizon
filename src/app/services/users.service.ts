@@ -84,7 +84,6 @@ export class UsersService {
       'Access-Control-Allow-Origin': '*',
       'Authorization': `Bearer ${JSON.parse(JSON.stringify(this.localStorage.get('token')))}`
     });
-    console.log("userId", userId);
     this.options = {
       headers: headers
     }
@@ -93,7 +92,6 @@ export class UsersService {
 
   login(user: any) {
     return this.httpService.post(`${this.backUrl}/users/login`, user, this.options).subscribe((res: any) => {
-      console.log("res", res);
       this.localStorage.set('token', res.token);
       this.localStorage.set('userId', res.userId);
       this.router.navigate(['home']);

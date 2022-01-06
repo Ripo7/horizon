@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BattleService } from 'src/app/services/battle.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { MoralisService } from 'src/app/services/moralis.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -14,14 +17,38 @@ export class MyTroopersComponent implements OnInit {
   doEditTroopName: boolean = false;
   trooperToShow: any = null;
 
+  loader = true;
+
   newTrooperName: string = '';
 
-  constructor(private usersService: UsersService, private localStorage: LocalStorageService) { }
+  userNFTs : any[] = [];
+
+  constructor(private usersService: UsersService, 
+    private localStorage: LocalStorageService, 
+    private moralisService: MoralisService,
+    private spinner: NgxSpinnerService,
+    private battleService: BattleService) { }
 
   ngOnInit(): void {
-    this.usersService.getUserInfo(JSON.parse(JSON.stringify(this.localStorage.get('userId')))).subscribe((userInfo: any) => {
-      this.connectedUser = userInfo[0];
-    })
+    this.spinner.show();
+    this.moralisService.getUserNFTs().then(nftObs => {
+      let count = 0;
+      nftObs?.forEach(nft => {
+        nft.then((data: any) => {
+          let tmpData = {
+            trooperName: data.name,
+            idToken: data.token_id,
+            traits: data.traits,
+            image: data.image_preview_url
+          }
+          this.userNFTs.push(tmpData);
+          count ++;
+          if (count === nftObs.length) {
+            this.loader = false;
+          }
+        })
+      })
+    });
   }
 
   showTrooperDetails(trooper: any) {

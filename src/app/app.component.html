@@ -1,2 +1,26 @@
 
 <router-outlet></router-outlet>
+
+<div *ngIf="!getUserUserLogged()" class="button-connect" (click)="goToLogin()">
+    <button>
+        Connect Metamask
+    </button>
+</div>
+
+<!-- <div class="button-connect-1" (click)="goToLoginWallet()">
+    <button>
+        Connect Wallet Connect
+    </button>
+</div>
+
+<div class="button-connect-2" (click)="goToLoginSolana()">
+    <button>
+        Connect Phantom
+    </button>
+</div> -->
+
+<div *ngIf="getUserUserLogged()" class="button-connect" (click)="logout()">
+    <button>
+        Disconnect
+    </button>
+</div>

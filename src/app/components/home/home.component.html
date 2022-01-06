@@ -16,7 +16,9 @@
         </div>
         <p>Join one side and fight for the victory !</p>
         <div class="play-button" routerLink="/battle">
-            Play now
+            <p>
+                Play now
+            </p>
         </div>
     </div>
 </div>
@@ -54,23 +56,5 @@
             After the murder of the emperor while visiting Elda, 
             the council decided to secede and go to war against what was left of the empire.</label>
     </div>       
-</div>
-
-<div *ngIf="!isUserLogged() && showButton" class="button-connect" (click)="goToLogin()">
-    <button>
-        Connect Metamask
-    </button>
-</div>
-
-<div class="button-connect-1" (click)="goToLoginWallet()">
-    <button>
-        Connect Wallet Connect
-    </button>
-</div>
-
-<div *ngIf="isUserLogged() && showButton" class="button-connect" (click)="logout()">
-    <button>
-        Disconnect
-    </button>
 </div>
 

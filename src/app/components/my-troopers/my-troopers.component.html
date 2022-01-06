@@ -1,23 +1,23 @@
 <app-header></app-header>
-{{connectedUser?.pseudo}}
-<div *ngIf="connectedUser" class="troopers-wrapper">
-    <div *ngFor="let trooper of connectedUser.troopers" class="trooper" (click)="showTrooperDetails(trooper)">
+<div *ngIf="userNFTs.length >= 0 && !this.loader" class="troopers-wrapper">
+    <div *ngFor="let trooper of userNFTs" class="trooper">
         <img 
-                [ngClass]="{'red': trooper.properties.emissiveColor === 'Red', 
-                            'light-blue': trooper.properties.emissiveColor === 'Light Blue',
-                            'dark-blue': trooper.properties.emissiveColor === 'Dark Blue',
-                            'pink': trooper.properties.emissiveColor === 'Pink', 
-                            'purple': trooper.properties.emissiveColor === 'Purple', 
-                            'green': trooper.properties.emissiveColor === 'Green',
-                            'orange': trooper.properties.emissiveColor === 'Orange',
-                            'blue-sky': trooper.properties.emissiveColor === 'Blue Sky',
-                            'fire': trooper.properties.emissiveColor === 'Fire'
-                        }" 
                 [src]="trooper.image"/>
-        <label>#{{trooper.id}}</label>
-        <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
-        <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label>
+        <label (click)="showTrooperDetails(trooper)">{{trooper.trooperName}}</label>
+        <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
+        <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
     </div>
+</div>
+
+<div *ngIf="loader">
+    <ngx-spinner
+            [fullScreen]="false"
+            size="medium"
+            color="#ffe329"
+            bdColor="transparent"
+            type="ball-clip-rotate-multiple"
+            >
+        </ngx-spinner>
 </div>
 <div *ngIf="showTrooper && trooperToShow" class="backdrop" (click)="backShowTrooper()">
 
@@ -30,14 +30,52 @@
         <div class="bloc bloc-name">
             <label class="name">
             </label>
-            <label class="id">Trooper: #{{trooperToShow.id}}</label>
-            <label class="rarity">Rarity: {{trooperToShow.rarity}}</label>
+            <label class="id">{{trooperToShow.trooperName}}</label>
+            <!-- <label class="rarity">Rarity: {{trooperToShow.rarity}}</label> -->
         </div>
     </div>
     <div class="details-bloc">
         <div class=properties-wrapper>
             <div class="properties">
-                <div> 
+                <div *ngFor="let trait of trooperToShow.traits">
+                    <div *ngIf="trait.trait_type === 'Color'">
+                        <label class="type">Color: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Emissive Color'">
+                        <label class="type">Emissive Color: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Armor'">
+                        <label class="type">Armor: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Helmet Top'">
+                        <label class="type">Helmet Top: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Accessory'">
+                        <label class="type">Accessory: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Visor'">
+                        <label class="type">Visor: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Respirator'">
+                        <label class="type">Respirator: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Gem'">
+                        <label class="type">Gem: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                    <div *ngIf="trait.trait_type === 'Support Gem'">
+                        <label class="type">Support Gem: </label>
+                        <label class="value">{{trait.value}}</label>
+                    </div>
+                </div>
+                <!-- <div> 
                     <label class="label">Color: </label>
                     <label>{{trooperToShow.properties.color}}</label>
                 </div>
@@ -72,8 +110,20 @@
                 <div>
                     <label class="label">Support Gem: </label>
                     <label>{{trooperToShow.properties.supportGem}}</label>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- <div *ngIf="userNFTs.length > 0">
+
+    <div *ngFor="let nft of userNFTs">
+        {{nft.name}} <br>
+        {{nft.idToken}} <br>
+        <div *ngFor="let tr of nft.traits">
+            {{tr.trait_type}} : {{tr.value}}
+        </div>
+    </div>
+</div> -->

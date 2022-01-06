@@ -2,80 +2,84 @@ import { Injectable } from '@angular/core';
 import { Moralis } from 'moralis';
 import { environment } from 'src/environments/environment';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoralisService {
 
-  user?: any;
-
   changeDetectorRef: any;
 
-  constructor() { 
+  constructor(private httpService: HttpClient, private router: Router) { 
     Moralis.start({
       appId: environment.moralis.appId,
       serverUrl: environment.moralis.serverUrl,
     })
       .then(() => console.info('Moralis has been initialised.'))
-      .finally(() => this.setLoggedInUser(Moralis.User.current()));
+      .finally(() => {
+        console.log("Moralis.User.current()?.attributes.accounts;", Moralis.User.current()?.attributes.accounts);
+      });
   }
 
   setChangeDetector(cdr: any) {
     this.changeDetectorRef = cdr;
   }
 
-  loginWithMetamask() {
-      Moralis.Web3.authenticate({ provider: 'metamask' })
+  async loginWithMetamask() {
+      Moralis.Web3.authenticate({ provider: 'metamask', signingMessage: 'Connect to Galleria' })
           .then((loggedInUser) => {
-            this.setLoggedInUser(loggedInUser);
-            this.getUserNFTs();
+            console.log("loggedInUser", loggedInUser);
           })
           .catch((e) => console.error(`Moralis metamask login error:`, e));
   }
 
-  loginWalletConnect() {
-    Moralis.Web3.authenticate({ provider: 'walletconnect' })
-          .then((loggedInUser) => {
-            this.setLoggedInUser(loggedInUser);
-            this.getUserNFTs();
-          })
-          .catch((e) => console.error(`Moralis walletconnect login error:`, e));
-  }
+  // loginWalletConnect() {
+  //   Moralis.Web3.authenticate({ provider: 'walletconnect', signingMessage: 'Connect to Galleria' })
+  //         .then((loggedInUser) => {
+  //           console.log("loggedInUser wallet connect", loggedInUser)
+  //           Moralis.Web3.link(loggedInUser.attributes.accounts[0]);
+  //           this.setLoggedInUser(loggedInUser);
+  //           this.getUserNFTs();
+  //         })
+  //         .catch((e) => console.error(`Moralis walletconnect login error:`, e));
+  // }
+
+  // async loginSolana() {
+  //   Moralis.Web3.authenticate({type:'sol'}).then(function(user) {
+  //     console.log(user.get('solAddress'))
+  //     console.log("moralis current suer sol", Moralis.User.current());
+  //   })
+  // }
 
   logout() {
     Moralis.User.logOut()
       .then((loggedOutUser) => console.info('logout', loggedOutUser))
-      // Set user to undefined
-      .then(() => this.setLoggedInUser(undefined))
       // Disconnect Web3 wallet
-      .then(() => Moralis.Web3.cleanup())
+      .then(() => {
+        Moralis.Web3.cleanup()
+        this.router.navigate(['home']);
+      })
       .catch((e) => console.error('Moralis logout error:', e));
   }
 
-  private setLoggedInUser(loggedInUser?: any) {
-    this.user = loggedInUser;
-    console.info('Loggedin user:', loggedInUser);
-    /**
-     * Manual detect changes due to OnPush change detection.
-     * This can be eliminated if you use async pipe and Observables
-     * (out of scope of this demo)
-     */
-    this.changeDetectorRef.detectChanges();
+   async getUserNFTs() {
+    const options = { address: '0x8d1509e0240eba23cccd58941fa2b5d7ff1fc70f', token_address: '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82' };
+    const currentUserNft = await Moralis.Web3API.account.getNFTsForContract(options);
+    return currentUserNft.result?.map(async currNFT => {
+      const data = await this.getOpenSeaMetadata(currNFT.token_id);
+      return data;
+    })
+    // this.httpService.get(`https://api.opensea.io/api/v1/asset/0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82/${responseNFTs.result[0].token_id}/`)    
   }
 
-  isUserLogged() {
-    return this.user ? true : false;
+  getUserLogged() {
+    return Moralis.User.current();
   }
 
-  getUserNFTs() {
-    const options = { address: this.user.attributes[0], token_address: '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82' };
-    Moralis.Web3API.account.getNFTsForContract(options).then(responseNFTs => {
-      console.log("responseNFTs", responseNFTs);
-      const options = { address: '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82', token_id: '280' };
-      Moralis.Web3API.token.getTokenIdMetadata(options).then((resp) => {
-        console.log("resp", resp);
-      });
-    });
+  getOpenSeaMetadata(idToken: any) {
+    return this.httpService.get(`https://api.opensea.io/api/v1/asset/0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82/${idToken}/`).toPromise();  
   }
 }

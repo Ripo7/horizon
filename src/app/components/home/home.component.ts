@@ -27,32 +27,26 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    setTimeout(() => this.showButton = true, 500);
   }
   
   seeSide(side: string) {
     this.sideToSee = side;
-    console.log("consweiAmount", weiAmount);
   }
 
   goToLogin() {
     this.morService.loginWithMetamask();
   }
 
-  goToLoginWallet() {
-    this.morService.loginWalletConnect();
-  }
-
   logout() {
     this.morService.logout();
   }
 
-  isUserLogged() {
-    return this.morService.isUserLogged();
-  }
-
   pay() {
     this.contractService.sendPayment('yo', 1);
+  }
+
+  getUserUserLogged() {
+    return this.morService.getUserLogged();
   }
 
 }

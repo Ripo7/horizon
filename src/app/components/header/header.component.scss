@@ -1,4 +1,5 @@
 .header-wrapper {
+    padding-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,12 +19,12 @@
     }
 
     .title:hover {
-        color: #ffef86;
-        border-bottom: solid 3px #ffef86;
+        color: #ffe329;
+        border-bottom: solid 3px #ffe329;
     }   
 
     .title.active {
-        color: #ffef86;
-        border-bottom: solid 3px #ffef86;
+        color: #ffe329;
+        border-bottom: solid 3px #ffe329;
     }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { MoralisService } from 'src/app/services/moralis.service';
+import { Moralis } from 'moralis';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +10,13 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private localStorage: LocalStorageService) { }
-
-  isUserLogged: boolean = false;
+  constructor(private localStorage: LocalStorageService, private moralisService: MoralisService) { }
 
   ngOnInit(): void {
-    this.isUserLogged = this.localStorage.isUserLog();
+  }
+
+  getUserLogged() {
+    return this.moralisService.getUserLogged();
   }
 
 }

@@ -28,7 +28,6 @@ export class ContractService {
 
   public openMetamask = async () => {
       let addresses = await this.getAccounts();
-      console.log("service",addresses)
       if (!addresses.length) {
           try {
               addresses = await window.ethereum.enable();
@@ -38,7 +37,6 @@ export class ContractService {
       }
       this.web3 = new Web3(window.ethereum);
       this.addresses = addresses;
-      console.log("this.web3", this.web3);
       const minABI = [
         // balanceOf
         {
@@ -52,14 +50,11 @@ export class ContractService {
       const contract = new this.web3.eth.Contract(minABI, '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82');
       const result = await contract.methods.balanceOf('0x1E673E737bae0547793C77501803a62Dfa45D126').call(); 
       const format = this.web3.utils.fromWei(result); // 29803630.997051883414242659
-      console.log("result", result);
       return addresses.length ? addresses[0] : null;
   };
 
   public sendPayment = async (userAddress: any, mintNumber: number) => {
-    console.log("this.web3",this.web3);
-    let amout = 0.1 *  mintNumber
-    console.log("amount", String(amout));
+    let amout = 0.1 *  mintNumber;
     this.web3.eth.sendTransaction({from: userAddress, to: '0xc2F7e0d0d3854a0f8d5db255b5EF25b8DC5A03BA',
         value: this.web3.utils.toWei(String(amout), 'ether')
       })

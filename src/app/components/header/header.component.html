@@ -4,12 +4,12 @@
             Home
         </label>
     </div>
-    <div *ngIf="isUserLogged" class="title" routerLink="/battle" routerLinkActive="active">
+    <div *ngIf="getUserLogged()" class="title" routerLink="/battle" routerLinkActive="active">
         <label class="label">
             Battle
         </label>
     </div>
-    <div *ngIf="isUserLogged" class="title" routerLink="/my-troopers" routerLinkActive="active">
+    <div *ngIf="getUserLogged()" class="title" routerLink="/my-troopers" routerLinkActive="active">
         <label class="label">
             My Troopers
         </label>

@@ -1,0 +1,21 @@
+.button-connect {
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    right: 0;
+    padding: 30px;
+    button {
+        padding: 20px;
+        border: none;
+        background-color:  #ffe329;
+        border: solid 2px transparent;
+        color: #17171D;
+        border-radius: 50px;
+        transition: box-shadow 0.5s, border 0.5s;
+        cursor: pointer;
+        font-family: 'Heavitas';
+    }
+    button:hover {
+        box-shadow: 0 0 10px #ffe329;
+    }
+}

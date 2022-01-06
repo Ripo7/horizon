@@ -39,43 +39,45 @@
     margin-top: 40px;
     color: white;
     width: 98%;
-    background-color: #121212;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     padding: 20px;
     z-index: 999;
-    box-shadow: 0 0 10px black;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: "Altone";
     p {
         font-size: x-large;
-        color: #ffef86;
         font-family: "Heavitas";
     }
 }
 
 .play-button {
     font-size: xx-large;
-    color: #ffef86;
+    color: #ffe329;
     cursor: pointer;
-    border: solid 3px #ffef86;
-    padding: 10px 40px;
+    border: solid 3px #ffe329;
+    padding: 0 10px;
     font-family: "Heavitas";
+    transform: skewX(-15deg) scale(1);
+    border-radius: 10px;
     transition: background-color 0.5s, color 0.5s;
 }
 
 .play-button:hover {
-    background-color: #ffef86;
-    color: #121212;
+    background-color: #ffe329;
+    p {
+        color: #17171D;
+    }
 }
 
 .home-wrapper-2 {
     color: white;
     display: flex;
     justify-content: center;
-
+    margin-bottom: 30px;
     .trooper {
         display: flex;
         flex-direction: column;
@@ -101,25 +103,30 @@
         img {
             width: 300px;
             margin: 60px 60px 10px 60px;
-            border-radius: 50%;
-            transition: box-shadow 0.5s;
+            border-radius: 20px;
+            transition: border 0.5s;
             padding-top: 10px;
+            border: solid 4px transparent;
         }
 
         img.red:hover {
-            box-shadow: 0 0 40px #f16d24;
+            // box-shadow: 0 0 40px #f16d24;
+            border: solid 4px #f16d24;
         }
 
         img.blue:hover {
-            box-shadow: 0 0 40px #41faff;
+            // box-shadow: 0 0 40px #41faff;
+            border: solid 4px #41faff;
         }
 
         img.red.show {
-            box-shadow: 0 0 40px #f16d24;
+            // box-shadow: 0 0 40px #f16d24;
+            border: solid 4px #f16d24;
         }
 
         img.blue.show {
-            box-shadow: 0 0 40px #41faff;
+            // box-shadow: 0 0 40px #41faff;
+            border: solid 4px #41faff;
         }
     }
 }
@@ -127,9 +134,8 @@
 .details {
     display: flex;
     flex-direction: column;
-    background-color: #121212;
     padding: 20px 60px;
-
+    padding-bottom: 50px;
     label {
         color: white;
     }
@@ -139,30 +145,32 @@
     }
 
     .leader-title {
-        color: #ffef86;
+        color: #ffe329;
         font-family: "Heavitas";
+    }
+    .leader-name {
+        font-family: "Altone";
     }
 }
 
 .button-connect {
     position: fixed;
-    top: 0;
+    bottom: 0;
     z-index: 999;
     right: 0;
     padding: 30px;
     button {
         padding: 20px;
         border: none;
-        background-color: #121212;
+        background-color:  #ffe329;
         border: solid 2px transparent;
-        color: #ffef86;
-        border-radius: 10px;
+        color: #17171D;
+        border-radius: 50px;
         transition: box-shadow 0.5s, border 0.5s;
         cursor: pointer;
-        box-shadow: 0 0 10px yellow;
     }
     button:hover {
-        border: solid 2px #ffef86;
+        box-shadow: 0 0 10px #ffe329;
     }
 }
 
@@ -175,18 +183,60 @@
     button {
         padding: 20px;
         border: none;
-        background-color: #121212;
         border: solid 2px transparent;
-        color: #ffef86;
+        color: #ffe329;
         border-radius: 10px;
         transition: box-shadow 0.5s, border 0.5s;
         cursor: pointer;
         box-shadow: 0 0 10px yellow;
     }
     button:hover {
-        border: solid 2px #ffef86;
+        border: solid 2px #ffe329;
     }
 }
+
+.button-connect-2 {
+    position: fixed;
+    top: 200px;
+    z-index: 999;
+    right: 0;
+    padding: 30px;
+    button {
+        padding: 20px;
+        border: none;
+        border: solid 2px transparent;
+        color: #ffe329;
+        border-radius: 10px;
+        transition: box-shadow 0.5s, border 0.5s;
+        cursor: pointer;
+        box-shadow: 0 0 10px yellow;
+    }
+    button:hover {
+        border: solid 2px #ffe329;
+    }
+}
+
+.button-connect-3 {
+    position: fixed;
+    top: 300px;
+    z-index: 999;
+    right: 0;
+    padding: 30px;
+    button {
+        padding: 20px;
+        border: none;
+        border: solid 2px transparent;
+        color: #ffe329;
+        border-radius: 10px;
+        transition: box-shadow 0.5s, border 0.5s;
+        cursor: pointer;
+        box-shadow: 0 0 10px yellow;
+    }
+    button:hover {
+        border: solid 2px #ffe329;
+    }
+}
+
 
 .button-pay {
     position: absolute;
@@ -199,13 +249,13 @@
         border: none;
         background-color: red;
         border: solid 2px transparent;
-        color: #ffef86;
+        color: #ffe329;
         border-radius: 10px;
         transition: box-shadow 0.5s, border 0.5s;
         cursor: pointer;
     }
     button:hover {
         box-shadow: 0 0 10px black;
-        border: solid 2px #ffef86;
+        border: solid 2px #ffe329;
     }
 }
