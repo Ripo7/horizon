@@ -29,7 +29,7 @@ export class MoralisService {
   }
 
   async loginWithMetamask() {
-      Moralis.Web3.authenticate({ provider: 'metamask', signingMessage: 'Connect to Galleria' })
+      Moralis.Web3.authenticate({ provider: 'metamask', signingMessage: 'Connect to Hor1zon Civil War' })
           .then((loggedInUser) => {
             console.log("loggedInUser", loggedInUser);
           })
