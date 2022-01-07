@@ -174,10 +174,14 @@ export class BattleComponent implements OnInit {
     this.trooperToRemove.forEach(element => {
       this.battleService.remoteFromTeam(this.teamToRemoveFrom, element.idToken)
     });
+    this.trooperToAdd.forEach(element => {
+      this.battleService.addToTeam(this.teamToRemoveFrom, element.idToken)
+    });
     this.showModalRemove = false;
     this.teamToRemoveFrom = null;
     this.loadBattle();
     this.trooperToRemove = [];
+    this.trooperToAdd = [];
   }
 
   teamCount(team: string) {

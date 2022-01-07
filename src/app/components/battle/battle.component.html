@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="wrapper-battle" *ngIf="!loader">
-    <div class="battle-title" *ngIf="!currentBattle.data.finished && !currentBattle.data.locked && !currentBattle.data.started">
+    <div class="battle-title" *ngIf="!currentBattle?.data.finished && !currentBattle?.data.locked && !currentBattle?.data.started">
         <label class="title">
             Battle N°1.
         </label><br>
@@ -83,50 +83,60 @@
 </div>
 
 <div *ngIf="teamToAddTo && showModaljoin" class="modal-wrapper">
-    <div *ngIf="currentUserNFT.length >= 0" class="troopers-wrapper">
-        <ng-container *ngFor="let trooper of currentUserNFT" >
-            <div *ngIf="!trooperAlreadyInTeam(trooper, teamToAddTo)" class="trooper">
-                <img [src]="trooper.image"/>
-                <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
-                <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">O</label>
-            </div>
-            <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
-            <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
-        </ng-container>
-        <div class="validate">
-            <label (click)="validateAddTrooper()">
-                Valider
-            </label>
+    <div class="validate" *ngIf="teamToAddTo && showModaljoin">
+        <label (click)="validateAddTrooper()">
+            Validate
+        </label>
+    </div>
+    <div style="overflow-y: scroll; height: 80%;">
+        <div *ngIf="currentUserNFT.length >= 0" class="troopers-wrapper">
+            <ng-container *ngFor="let trooper of currentUserNFT" >
+                <div *ngIf="!trooperAlreadyInTeam(trooper, teamToAddTo)" class="trooper">
+                    <img [src]="trooper.image"/>
+                    <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
+                    <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">O</label>
+                </div>
+                <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
+                <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
+            </ng-container>
         </div>
     </div>
-    <div>
-
-    </div>
 </div>
+
+
 
 <div *ngIf="teamToRemoveFrom && showModalRemove" class="backdrop" (click)="backRemoveTrooper()">
 
 </div>
 
 <div *ngIf="teamToRemoveFrom && showModalRemove" class="modal-wrapper">
-    <div *ngIf="currentUserNFT.length >= 0" class="troopers-wrapper">
-        <ng-container *ngFor="let trooper of currentUserNFT">
-            <div *ngIf="trooperAlreadyInTeam(trooper, teamToRemoveFrom)" class="trooper">
-                <img 
-                [src]="trooper.image"/>
-                <label *ngIf="!trooperIsInTrooperRemoveList(trooper)" (click)="removeTrooper(trooper)">Remove</label>
-                <label class="remove" *ngIf="trooperIsInTrooperRemoveList(trooper)" (click)="removeTrooperFromRemoveList(trooper)">X</label>
-            </div>
-            <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
-            <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
-        </ng-container>
-        <div class="validate">
-            <label (click)="validateRemoveTrooper()">
-                Valider
-            </label>
-        </div>
+    <div class="validate" *ngIf="teamToRemoveFrom && showModalRemove">
+        <label (click)="validateRemoveTrooper()">
+            Validate
+        </label>
     </div>
-    <div>
-
+    <div style="overflow-y: scroll; height: 80%;">
+        <div *ngIf="currentUserNFT.length >= 0" class="troopers-wrapper">
+            <ng-container *ngFor="let trooper of currentUserNFT">
+                <div *ngIf="trooperAlreadyInTeam(trooper, teamToRemoveFrom)" class="trooper">
+                    <img 
+                    [src]="trooper.image"/>
+                    <label *ngIf="!trooperIsInTrooperRemoveList(trooper)" (click)="removeTrooper(trooper)">Remove</label>
+                    <label class="remove" *ngIf="trooperIsInTrooperRemoveList(trooper)" (click)="removeTrooperFromRemoveList(trooper)">X</label>
+                </div>
+                <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
+                <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
+            </ng-container>
+            <ng-container *ngFor="let trooper of currentUserNFT">
+                <div *ngIf="!trooperAlreadyInTeam(trooper, teamToRemoveFrom)" class="trooper">
+                    <img 
+                    [src]="trooper.image"/>
+                    <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
+                    <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">0</label>
+                </div>
+                <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
+                <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
+            </ng-container>
+        </div>
     </div>
 </div>
