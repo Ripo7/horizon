@@ -22,6 +22,9 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { environment } from 'src/environments/environment';
 
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,8 @@ import { environment } from 'src/environments/environment';
     AngularFireStorageModule,
     HttpClientModule,
     NgxSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

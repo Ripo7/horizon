@@ -20,3 +20,9 @@ body {
     font-family: "Heavitas";
     src: local("Heavitas"), url(./assets/fonts/Heavitas.ttf) format("truetype");
 }
+
+ngx-skeleton-loader {
+    span {
+        background-color: #ffe329 !important;
+    }
+}

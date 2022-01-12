@@ -3,7 +3,13 @@
     <div *ngFor="let trooper of userNFTs" class="trooper">
         <img 
                 [src]="trooper.image"/>
+        <div class="stats">
+            <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.att}} </p>
+            <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.def}} </p>
+            <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.spe}} </p>
+        </div>
         <label (click)="showTrooperDetails(trooper)">{{trooper.trooperName}}</label>
+        
         <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
         <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
     </div>

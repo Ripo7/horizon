@@ -21,11 +21,11 @@
     .battle-content {
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-around;
         flex-wrap: wrap;
         margin-top: 40px;
         .demetos {
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -63,11 +63,25 @@
                 box-shadow: 0px 0px 10px #f16d24;
             }
         }
+
+        .demetos-selected {
+            border: solid 4px #f16d24;
+            box-shadow: 0 0 20px #f16d24;
+            border-radius: 20px;
+        }
+
+        .elda-selected {
+            border: solid 4px #41faff;
+            box-shadow: 0 0 20px #41faff;
+            border-radius: 20px;
+        }
+
         .elda {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
+            padding: 20px;
             img {
                 width: 200px;
             }
@@ -250,4 +264,82 @@ label.add {
 label.add:hover {
     transform: skewX(-15deg) scale(1.1) !important;
     box-shadow: 0px 0px 10px #478347 !important;
+}
+
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    color: #ffe329;
+    font-family: 'Heavitas';
+    justify-content: space-evenly;
+    width: 100%;
+    img {
+        margin-right: 5px;
+    }
+    p {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.trooper-list-demetos {
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+    font-family: 'Altone';
+    color: #f16d24;
+    max-height: 400px;
+    margin-top: 20px;
+    overflow-y: scroll;
+    margin-bottom: 40px;
+    .trooper-battle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        border-bottom: solid 1px;
+        img {
+            margin-left: 10px;
+            border-radius: 50%;
+            width: 40px;
+        }
+    }
+}
+
+.trooper-list-elda {
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+    font-family: 'Altone';
+    color: #41faff;
+    max-height: 400px;
+    margin-top: 20px;
+    overflow-y: scroll;
+    margin-bottom: 40px;
+    .trooper-battle {
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: solid 1px;
+        img {
+            border-radius: 50%;
+            width: 40px;
+        }
+    }
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    color: #ffe329;
+    font-family: 'Heavitas';
+    justify-content: space-evenly;
+    width: 100%;
+    img {
+        margin-right: 5px;
+    }
+    p {
+        display: flex;
+        align-items: center;
+    }
 }
