@@ -5,15 +5,19 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { first, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoralisService {
+  
+  dbPathTrooper = '/troopers'
 
   changeDetectorRef: any;
 
-  constructor(private httpService: HttpClient, private router: Router) { 
+  constructor(private httpService: HttpClient, private router: Router, private db: AngularFirestore) { 
     Moralis.start({
       appId: environment.moralis.appId,
       serverUrl: environment.moralis.serverUrl,
@@ -70,7 +74,7 @@ export class MoralisService {
     const options = { address: Moralis.User.current()?.attributes.accounts[0], token_address: '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82' };
     const currentUserNft = await Moralis.Web3API.account.getNFTsForContract(options);
     return currentUserNft.result?.map(async currNFT => {
-      const data = await this.getOpenSeaMetadata(currNFT.token_id);
+      const data = await this.getTroopersByIdToken(currNFT.token_id).toPromise();
       return data;
     })
     // this.httpService.get(`https://api.opensea.io/api/v1/asset/0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82/${responseNFTs.result[0].token_id}/`)    
@@ -82,5 +86,23 @@ export class MoralisService {
 
   getOpenSeaMetadata(idToken: any) {
     return this.httpService.get(`https://api.opensea.io/api/v1/asset/0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82/${idToken}/`).toPromise();  
+  }
+
+  getTroopersByIdToken(idToken: string) {
+    
+    return this.db.collection(this.dbPathTrooper, ref => ref.where('idToken', '==', idToken))
+    .snapshotChanges()
+    .pipe(
+        first(),
+        map(battle => {
+          return battle.map(a => {
+            let tmpBat = {
+              id: a.payload.doc.id, 
+              data: a.payload.doc.data()
+            }
+            return tmpBat;
+          })
+        })
+    );
   }
 }

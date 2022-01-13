@@ -59,10 +59,10 @@
                     </p>
                 </div>
             </div>
-            <div *ngIf="currentBattle.data.locked && teamDemetos.length === currentBattle.data.demetos.length" class="trooper-list-demetos">
-                <div *ngFor="let demTrp of teamDemetos" class="trooper-battle">
-                    <label>{{demTrp.name}}</label>
-                    <img [src]="demTrp.image_preview_url"/>
+            <div class="trooper-list-demetos">
+                <div *ngFor="let demTrp of teamDemetos" class="trooper-battle" (click)="seeTrooperDetails(demTrp)">
+                    <label>Trooper #{{demTrp.idToken}}</label>
+                    <img [src]="demTrp.image"/>
                     <div class="stats" *ngIf="!loaderTroopDetails">
                         <p> <img src="assets/images/sword.png" style="width: 20px;"/> {{demTrp.att}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 20px;"/> {{demTrp.def}} </p>
@@ -106,10 +106,10 @@
                     </p>
                 </div>
             </div>
-            <div *ngIf="currentBattle.data.locked && teamElda.length === currentBattle.data.elda.length" class="trooper-list-elda">
-                <div *ngFor="let eldTrp of teamElda" class="trooper-battle">
-                    <label>{{eldTrp.name}}</label>
-                    <img [src]="eldTrp.image_preview_url"/>
+            <div class="trooper-list-elda">
+                <div *ngFor="let eldTrp of teamElda" class="trooper-battle" (click)="seeTrooperDetails(eldTrp)">
+                    <label>Trooper #{{eldTrp.idToken}}</label>
+                    <img [src]="eldTrp.image"/>
                     <div class="stats" *ngIf="!loaderTroopDetails">
                         <p> <img src="assets/images/sword.png" style="width: 20px;"/> {{eldTrp.att}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 20px;"/> {{eldTrp.def}} </p>
@@ -211,6 +211,66 @@
                 <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
                 <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
             </ng-container>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="trooperToSeeDetails && showModalDetails" class="backdrop" (click)="backDetailsTrooper()">
+
+</div>
+
+<div *ngIf="trooperToSeeDetails && showModalDetails" class="modal-wrapper trooper-details">
+    <div class="details-bloc border-bottom">
+        <div class="bloc">
+            <img [src]="trooperToSeeDetails.image"/>
+        </div>
+        <div class="bloc bloc-name">
+            <label class="name">
+            </label>
+            <label class="id">Trooper #{{trooperToSeeDetails?.idToken}}</label>
+            <!-- <label class="rarity">Rarity: {{trooperToShow.rarity}}</label> -->
+        </div>
+    </div>
+    <div class="details-bloc">
+        <div class=properties-wrapper>
+            <div class="properties">
+                <div>
+                    <label class="type">Color: </label>
+                    <label class="value">{{trooperToSeeDetails?.color}}</label>
+                </div>
+                <div>
+                    <label class="type">Emissive Color: </label>
+                    <label class="value">{{trooperToSeeDetails?.emissiveColor}}</label>
+                </div>
+                <div>
+                    <label class="type">Armor: </label>
+                    <label class="value">{{trooperToSeeDetails?.armor}}</label>
+                </div>
+                <div>
+                    <label class="type">Helmet Top: </label>
+                    <label class="value">{{trooperToSeeDetails?.helmet}}</label>
+                </div>
+                <div>
+                    <label class="type">Accessory: </label>
+                    <label class="value">{{trooperToSeeDetails?.accessory}}</label>
+                </div>
+                <div>
+                    <label class="type">Visor: </label>
+                    <label class="value">{{trooperToSeeDetails?.Vvsor}}</label>
+                </div>
+                <div>
+                    <label class="type">Respirator: </label>
+                    <label class="value">{{trooperToSeeDetails?.respirator}}</label>
+                </div>
+                <div>
+                    <label class="type">Gem: </label>
+                    <label class="value">{{trooperToSeeDetails?.gem}}</label>
+                </div>
+                <div>
+                    <label class="type">Support Gem: </label>
+                    <label class="value">{{trooperToSeeDetails?.supportGem}}</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>

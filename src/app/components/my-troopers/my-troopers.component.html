@@ -8,7 +8,7 @@
             <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.def}} </p>
             <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.spe}} </p>
         </div>
-        <label (click)="showTrooperDetails(trooper)">{{trooper.trooperName}}</label>
+        <label (click)="showTrooperDetails(trooper)">Trooper #{{trooper.idToken}}</label>
         
         <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
         <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
@@ -36,87 +36,49 @@
         <div class="bloc bloc-name">
             <label class="name">
             </label>
-            <label class="id">{{trooperToShow.trooperName}}</label>
+            <label class="id">Trooper #{{trooperToShow.idToken}}</label>
             <!-- <label class="rarity">Rarity: {{trooperToShow.rarity}}</label> -->
         </div>
     </div>
     <div class="details-bloc">
         <div class=properties-wrapper>
             <div class="properties">
-                <div *ngFor="let trait of trooperToShow.traits">
-                    <div *ngIf="trait.trait_type === 'Color'">
-                        <label class="type">Color: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Emissive Color'">
-                        <label class="type">Emissive Color: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Armor'">
-                        <label class="type">Armor: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Helmet Top'">
-                        <label class="type">Helmet Top: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Accessory'">
-                        <label class="type">Accessory: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Visor'">
-                        <label class="type">Visor: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Respirator'">
-                        <label class="type">Respirator: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Gem'">
-                        <label class="type">Gem: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                    <div *ngIf="trait.trait_type === 'Support Gem'">
-                        <label class="type">Support Gem: </label>
-                        <label class="value">{{trait.value}}</label>
-                    </div>
-                </div>
-                <!-- <div> 
-                    <label class="label">Color: </label>
-                    <label>{{trooperToShow.properties.color}}</label>
+                <div>
+                    <label class="type">Color: </label>
+                    <label class="value">{{trooperToShow.color}}</label>
                 </div>
                 <div>
-                    <label class="label">Emissive Color: </label>
-                    <label>{{trooperToShow.properties.emissiveColor}}</label>
+                    <label class="type">Emissive Color: </label>
+                    <label class="value">{{trooperToShow.emissiveColor}}</label>
                 </div>
                 <div>
-                    <label class="label">Armor: </label>
-                    <label>{{trooperToShow.properties.armor}}</label>
+                    <label class="type">Armor: </label>
+                    <label class="value">{{trooperToShow.armor}}</label>
                 </div>
                 <div>
-                    <label class="label">Helmet Top: </label>
-                    <label>{{trooperToShow.properties.helmetTop}}</label>
+                    <label class="type">Helmet Top: </label>
+                    <label class="value">{{trooperToShow.helmet}}</label>
                 </div>
                 <div>
-                    <label class="label">Accessory: </label>
-                    <label>{{trooperToShow.properties.accessory}}</label>
+                    <label class="type">Accessory: </label>
+                    <label class="value">{{trooperToShow.accessory}}</label>
                 </div>
                 <div>
-                    <label class="label">Visor: </label>
-                    <label>{{trooperToShow.properties.visor}}</label>
+                    <label class="type">Visor: </label>
+                    <label class="value">{{trooperToShow.Vvsor}}</label>
                 </div>
                 <div>
-                    <label class="label">Respirator: </label>
-                    <label>{{trooperToShow.properties.respirator}}</label>
+                    <label class="type">Respirator: </label>
+                    <label class="value">{{trooperToShow.respirator}}</label>
                 </div>
                 <div>
-                    <label class="label"> Gem: </label>
-                    <label>{{trooperToShow.properties.gem}}</label>
+                    <label class="type">Gem: </label>
+                    <label class="value">{{trooperToShow.gem}}</label>
                 </div>
                 <div>
-                    <label class="label">Support Gem: </label>
-                    <label>{{trooperToShow.properties.supportGem}}</label>
-                </div> -->
+                    <label class="type">Support Gem: </label>
+                    <label class="value">{{trooperToShow.supportGem}}</label>
+                </div>
             </div>
         </div>
     </div>

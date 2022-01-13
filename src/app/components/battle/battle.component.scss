@@ -284,25 +284,34 @@ label.add:hover {
 }
 
 .trooper-list-demetos {
+    font-family: 'Altone';
     border-top: solid 3px;
     border-bottom: solid 3px;
-    font-family: 'Altone';
     color: #f16d24;
     max-height: 400px;
     margin-top: 20px;
     overflow-y: scroll;
     margin-bottom: 40px;
     .trooper-battle {
+        border: solid 1px transparent;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 10px;
-        border-bottom: solid 1px;
+        padding: 10px;
+        cursor: pointer;
+        label {
+            cursor: pointer;
+        }
         img {
             margin-left: 10px;
             border-radius: 50%;
             width: 40px;
         }
+    }
+    .trooper-battle:hover {
+        border: solid 1px #f16d24;
+        box-shadow: 0 0 10px #f16d24;
     }
 }
 
@@ -319,12 +328,21 @@ label.add:hover {
         margin: 10px;
         display: flex;
         justify-content: center;
+        padding: 10px;
         align-items: center;
-        border-bottom: solid 1px;
+        border: solid 1px transparent;
+        cursor: pointer;
+        label {
+            cursor: pointer;
+        }
         img {
             border-radius: 50%;
             width: 40px;
         }
+    }
+    .trooper-battle:hover {
+        border: solid 1px #41faff;
+        box-shadow: 0 0 10px #41faff;
     }
 }
 
@@ -341,5 +359,90 @@ label.add:hover {
     p {
         display: flex;
         align-items: center;
+    }
+}
+
+.trooper-details {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    width: 60%;
+    height: 80%;
+    background-color: #121212;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    img {
+        border-radius: 20px;
+        transition: box-shadow 0.5s;
+    }
+}
+
+.details-bloc {
+    width: 100%; 
+    height: 50%; 
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    div.bloc {
+        width: 50%; 
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .properties-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%; 
+        height: 100%;
+    }
+
+    div.properties {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        height: 80%;
+        font-size: large;
+        .type {
+            color: #ffe329;
+            font-family: "Heavitas";
+        }
+        .value {
+            font-family: "Altone";
+            margin-left: 3px;
+        }
+    }
+}
+
+.border-bottom {
+    border-bottom: solid 1px #ffe329;
+}
+
+.bloc-name {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    font-size: large;
+    .name {
+        font-size: xx-large;
+        color: #ffe329;
+        margin-bottom: 20px;
+        font-family: 'Heavitas';
+        span {
+            font-size: large;
+        }
+    }
+
+    .id {
+        text-align: center;
+        font-family: 'Heavitas';
+        font-size: xx-large;
+        color: #ffe329;
     }
 }
