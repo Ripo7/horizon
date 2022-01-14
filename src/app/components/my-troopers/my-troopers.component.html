@@ -49,39 +49,46 @@
             <div class="properties">
                 <div>
                     <label class="type">Color: </label>
-                    <label class="value">{{trooperToShow.color}}</label>
+                    <label class="value">{{trooperToShow?.color}}</label>
+                    <label class="value">( {{trooperToShow?.hp}} HP )</label>
                 </div>
                 <div>
                     <label class="type">Emissive Color: </label>
-                    <label class="value">{{trooperToShow.emissiveColor}}</label>
+                    <label class="value">{{trooperToShow?.emissiveColor}}</label>
+                    <label class="value">( {{trooperToShow?.attack}} Attack Damage )</label>
                 </div>
                 <div>
                     <label class="type">Armor: </label>
-                    <label class="value">{{trooperToShow.armor}}</label>
+                    <label class="value">{{trooperToShow?.armor}}</label>
+                    <label class="value">( {{trooperToShow?.armorScore}} Armor )</label>
                 </div>
                 <div>
                     <label class="type">Helmet Top: </label>
-                    <label class="value">{{trooperToShow.helmet}}</label>
+                    <label class="value">{{trooperToShow?.helmet}}</label>
                 </div>
                 <div>
                     <label class="type">Accessory: </label>
-                    <label class="value">{{trooperToShow.accessory}}</label>
+                    <label class="value">{{trooperToShow?.accessory}}</label>
                 </div>
                 <div>
                     <label class="type">Visor: </label>
-                    <label class="value">{{trooperToShow.Vvsor}}</label>
+                    <label class="value">{{trooperToShow?.Visor}}</label>
+                    <label class="value">( {{trooperToShow?.precision}} Precision )</label>
                 </div>
                 <div>
                     <label class="type">Respirator: </label>
-                    <label class="value">{{trooperToShow.respirator}}</label>
+                    <label class="value">{{trooperToShow?.respirator}}</label>
+                    <label class="value">( {{trooperToShow?.critical}} Critical Rate )</label>
                 </div>
                 <div>
                     <label class="type">Gem: </label>
-                    <label class="value">{{trooperToShow.gem}}</label>
+                    <label class="value">{{trooperToShow?.gem}}</label>
+                    <label class="value">( {{trooperToShow?.energy}} Energy )</label>
                 </div>
                 <div>
                     <label class="type">Support Gem: </label>
-                    <label class="value">{{trooperToShow.supportGem}}</label>
+                    <label class="value">{{trooperToShow?.supportGem}}</label>
+                    <label class="value">( {{trooperToShow?.speed}} Speed )</label>
                 </div>
             </div>
         </div>

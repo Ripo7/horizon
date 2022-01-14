@@ -73,7 +73,7 @@
                         <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{demTrp.energy}} </p>
                         <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{demTrp.precision}} </p>
                         <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{demTrp.critical}} </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{demTrp.speed}} </p>
+                        <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{demTrp.speed}} </p>
                     </div>
                     <div class="stats" *ngIf="loaderTroopDetails">
                         <p> <img src="assets/images/sword.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader></p>
@@ -263,14 +263,17 @@
                 <div>
                     <label class="type">Color: </label>
                     <label class="value">{{trooperToSeeDetails?.color}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.hp}} HP )</label>
                 </div>
                 <div>
                     <label class="type">Emissive Color: </label>
                     <label class="value">{{trooperToSeeDetails?.emissiveColor}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.attack}} Attack Damage )</label>
                 </div>
                 <div>
                     <label class="type">Armor: </label>
                     <label class="value">{{trooperToSeeDetails?.armor}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.armorScore}} Armor )</label>
                 </div>
                 <div>
                     <label class="type">Helmet Top: </label>
@@ -282,19 +285,23 @@
                 </div>
                 <div>
                     <label class="type">Visor: </label>
-                    <label class="value">{{trooperToSeeDetails?.Vvsor}}</label>
+                    <label class="value">{{trooperToSeeDetails?.Visor}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.precision}} Precision )</label>
                 </div>
                 <div>
                     <label class="type">Respirator: </label>
                     <label class="value">{{trooperToSeeDetails?.respirator}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.critical}} Critical Rate )</label>
                 </div>
                 <div>
                     <label class="type">Gem: </label>
                     <label class="value">{{trooperToSeeDetails?.gem}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.energy}} Energy )</label>
                 </div>
                 <div>
                     <label class="type">Support Gem: </label>
                     <label class="value">{{trooperToSeeDetails?.supportGem}}</label>
+                    <label class="value">( {{trooperToSeeDetails?.speed}} Speed )</label>
                 </div>
             </div>
         </div>
