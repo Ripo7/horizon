@@ -34,7 +34,8 @@
         </label>
     </div>
     <div class="battle-content">
-        <div>
+        <div style="width: 45%;
+        padding: 10px;">
             <div class="demetos" [ngClass]="{'demetos-selected': userAlreadyInBattle().userInDemetos}">
                 <div *ngIf="userAlreadyInBattle().userInDemetos && currentBattle.data.locked" style="font-family: 'Heavitas'; color: #f16d24; margin: 10px 0;">
                     Your Team.
@@ -61,12 +62,18 @@
             </div>
             <div class="trooper-list-demetos">
                 <div *ngFor="let demTrp of teamDemetos" class="trooper-battle" (click)="seeTrooperDetails(demTrp)">
-                    <label>Trooper #{{demTrp.idToken}}</label>
-                    <img [src]="demTrp.image"/>
+                    <div style="display: flex; flex-direction: row; align-items: center;">
+                        <label>Trooper #{{demTrp.idToken}}</label>
+                        <img [src]="demTrp.image"/>
+                    </div>
                     <div class="stats" *ngIf="!loaderTroopDetails">
-                        <p> <img src="assets/images/sword.png" style="width: 20px;"/> {{demTrp.att}} </p>
-                        <p> <img src="assets/images/armor.png" style="width: 20px;"/> {{demTrp.def}} </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 20px;"/> {{demTrp.spe}} </p>
+                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{demTrp.attack}} </p>
+                        <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{demTrp.hp}} </p>
+                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{demTrp.armorScore}} </p>
+                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{demTrp.energy}} </p>
+                        <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{demTrp.precision}} </p>
+                        <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{demTrp.critical}} </p>
+                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{demTrp.speed}} </p>
                     </div>
                     <div class="stats" *ngIf="loaderTroopDetails">
                         <p> <img src="assets/images/sword.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader></p>
@@ -81,7 +88,8 @@
             <img src="assets/images/battle.png" style="width: 200px;"/>    
         </div>
         
-        <div>
+        <div style="width: 45%;
+        padding: 10px;">
             <div class="elda" [ngClass]="{'elda-selected': userAlreadyInBattle().userInElda}">
                 <div *ngIf="userAlreadyInBattle().userInDemetos && currentBattle.data.locked" style="font-family: 'Heavitas'; color: #41faff; margin: 10px 0;">
                     Ennemy Team.
@@ -108,12 +116,18 @@
             </div>
             <div class="trooper-list-elda">
                 <div *ngFor="let eldTrp of teamElda" class="trooper-battle" (click)="seeTrooperDetails(eldTrp)">
-                    <label>Trooper #{{eldTrp.idToken}}</label>
-                    <img [src]="eldTrp.image"/>
+                    <div style="display: flex; flex-direction: row; align-items: center;">
+                        <label>Trooper #{{eldTrp.idToken}}</label>
+                        <img [src]="eldTrp.image"/>
+                    </div>
                     <div class="stats" *ngIf="!loaderTroopDetails">
-                        <p> <img src="assets/images/sword.png" style="width: 20px;"/> {{eldTrp.att}} </p>
-                        <p> <img src="assets/images/armor.png" style="width: 20px;"/> {{eldTrp.def}} </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 20px;"/> {{eldTrp.spe}} </p>
+                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{eldTrp.attack}} </p>
+                        <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{eldTrp.hp}} </p>
+                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{eldTrp.armorScore}} </p>
+                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{eldTrp.energy}} </p>
+                        <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{eldTrp.precision}} </p>
+                        <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{eldTrp.critical}} </p>
+                        <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{eldTrp.speed}} </p>
                     </div>
                     <div class="stats" *ngIf="loaderTroopDetails">
                         <p> <img src="assets/images/sword.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader></p>
@@ -153,9 +167,13 @@
                 <div *ngIf="!trooperAlreadyInTeam(trooper, teamToAddTo)" class="trooper">
                     <img [src]="trooper.image"/>
                     <div class="stats">
-                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.att}} </p>
-                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.def}} </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.spe}} </p>
+                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
+                        <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
+                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
+                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.energy}} </p>
+                        <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{trooper.precision}} </p>
+                        <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
+                        <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
                     </div>
                     <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
                     <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">O</label>
@@ -186,9 +204,13 @@
                     <img 
                     [src]="trooper.image"/>
                     <div class="stats">
-                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.att}} </p>
-                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.def}} </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.spe}} </p>
+                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
+                        <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
+                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
+                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.energy}} </p>
+                        <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{trooper.precision}} </p>
+                        <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
+                        <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
                     </div>
                     <label *ngIf="!trooperIsInTrooperRemoveList(trooper)" (click)="removeTrooper(trooper)">Remove</label>
                     <label class="remove" *ngIf="trooperIsInTrooperRemoveList(trooper)" (click)="removeTrooperFromRemoveList(trooper)">X</label>
@@ -201,9 +223,13 @@
                     <img 
                     [src]="trooper.image"/>
                     <div class="stats">
-                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.att}} </p>
-                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.def}} </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.spe}} </p>
+                        <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
+                        <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
+                        <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
+                        <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.energy}} </p>
+                        <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{trooper.precision}} </p>
+                        <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
+                        <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
                     </div>
                     <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
                     <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">0</label>

@@ -65,13 +65,11 @@
         }
 
         .demetos-selected {
-            border: solid 4px #f16d24;
             box-shadow: 0 0 20px #f16d24;
             border-radius: 20px;
         }
 
         .elda-selected {
-            border: solid 4px #41faff;
             box-shadow: 0 0 20px #41faff;
             border-radius: 20px;
         }
@@ -271,30 +269,37 @@ label.add:hover {
     display: flex;
     flex-direction: row;
     color: #ffe329;
-    font-family: 'Heavitas';
+    width: 200px;
     justify-content: space-evenly;
-    width: 100%;
+    flex-wrap: wrap;
+    font-family: "Heavitas";
+    /* justify-content: space-around; */
+
+
     img {
         margin-right: 5px;
     }
     p {
         display: flex;
         align-items: center;
+        margin: 10px;
     }
 }
 
 .trooper-list-demetos {
-    font-family: 'Altone';
-    border-top: solid 3px;
-    border-bottom: solid 3px;
+    font-family: "Altone";
     color: #f16d24;
-    max-height: 400px;
     margin-top: 20px;
+    display: flex;
     overflow-y: scroll;
     margin-bottom: 40px;
     .trooper-battle {
         border: solid 1px transparent;
         display: flex;
+        width: 30%;
+        flex-direction: column;
+        border-radius: 20px;
+        transition: all 0.25s;
         justify-content: center;
         align-items: center;
         margin: 10px;
@@ -310,39 +315,42 @@ label.add:hover {
         }
     }
     .trooper-battle:hover {
-        border: solid 1px #f16d24;
+        border-radius: 20px;
         box-shadow: 0 0 10px #f16d24;
     }
 }
 
 .trooper-list-elda {
-    border-top: solid 3px;
-    border-bottom: solid 3px;
-    font-family: 'Altone';
+    font-family: "Altone";
     color: #41faff;
-    max-height: 400px;
     margin-top: 20px;
+    display: flex;
     overflow-y: scroll;
     margin-bottom: 40px;
     .trooper-battle {
-        margin: 10px;
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-        align-items: center;
         border: solid 1px transparent;
+        display: flex;
+        width: 30%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 20px;
+        transition: all 0.25s;
         cursor: pointer;
         label {
             cursor: pointer;
         }
         img {
+            margin-left: 10px;
             border-radius: 50%;
             width: 40px;
         }
     }
     .trooper-battle:hover {
-        border: solid 1px #41faff;
         box-shadow: 0 0 10px #41faff;
+        border-radius: 20px;
     }
 }
 
@@ -350,15 +358,20 @@ label.add:hover {
     display: flex;
     flex-direction: row;
     color: #ffe329;
-    font-family: 'Heavitas';
     justify-content: space-evenly;
-    width: 100%;
+    width: 200px;
+    flex-wrap: wrap;
+    font-family: "Heavitas";
+    /* justify-content: space-around; */
+
+
     img {
         margin-right: 5px;
     }
     p {
         display: flex;
         align-items: center;
+        margin: 10px;
     }
 }
 

@@ -4,9 +4,13 @@
         <img 
                 [src]="trooper.image"/>
         <div class="stats">
-            <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.att}} </p>
-            <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.def}} </p>
-            <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.spe}} </p>
+            <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
+            <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
+            <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
+            <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.energy}} </p>
+            <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{trooper.precision}} </p>
+            <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
+            <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
         </div>
         <label (click)="showTrooperDetails(trooper)">Trooper #{{trooper.idToken}}</label>
         
