@@ -81,7 +81,7 @@
 }
 
 .trooper:hover {
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 10px #ffe329;
     border-radius: 20px;
     padding: 20px;
 }
@@ -130,7 +130,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50%; 
+        width: 100%;
         height: 100%;
     }
 

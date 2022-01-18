@@ -409,7 +409,7 @@ label.add:hover {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50%; 
+        width: 100%; 
         height: 100%;
     }
 
@@ -457,5 +457,59 @@ label.add:hover {
         font-family: 'Heavitas';
         font-size: xx-large;
         color: #ffe329;
+    }
+}
+
+.winner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+        margin-top: 10px;
+        color: #ffe329;
+        font-family: 'Altone';
+    }
+
+    img {
+        width: 200px;
+    }
+}
+
+.results {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .result-title {
+        color: #ffe329;
+        font-family: 'Heavitas';
+        font-size: xx-large;
+    }
+}
+
+.result-wrapper {
+    p {
+        color: #ffe329;
+        text-align: center;
+        font-family: 'Altone';
+    }
+}
+.report-battle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    color: #ffe329;
+    label {
+        font-family: 'Heavitas';
+        font-size: x-large;
+    }
+
+    p {
+        font-size: medium;
+        font-family: 'Altone';
     }
 }
