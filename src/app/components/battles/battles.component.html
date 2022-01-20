@@ -1,0 +1,146 @@
+<app-header></app-header>
+
+<div *ngIf="loader">
+    <ngx-spinner
+    [fullScreen]="false"
+    size="medium"
+    color="#ffe329"
+    bdColor="transparent"
+    type="ball-clip-rotate-multiple"
+    >
+</ngx-spinner>
+</div>
+
+<div class="wrapper" *ngIf="!loader">
+    <div class="battles-list" *ngIf="battles.length > 0 && !battleCreation && !showModalJoin">
+        <div class="battle-card" *ngFor="let bat of battles" (click)="showModalJoinBattle(bat)">
+            <div class="battle-card-header">
+                <div class="header-title">
+                    <label>{{bat.data.name}}</label>
+                </div>
+            </div>
+            <div class="battle-card-content">
+                <div class="demetos">
+                    <label style="font-family: 'Heavitas';">Demetos</label>
+                    <label>{{bat.data.demetos.length}}</label>
+                </div>
+                <div class="elda">
+                    <label style="font-family: 'Heavitas';">Elda</label>
+                    <label>{{bat.data.elda.length}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showModalJoin" class="modal-join-wrapper">
+        <app-battle [currentBattle]="battleToJoin" (validEmit)="validateJoinTrooper($event)"></app-battle>
+    </div>
+    <div class="battle-creation-modal" *ngIf="battleCreation && !showAddTroopers">
+        <div class="battle-name">
+            <label>Battle Name</label>
+            <input [(ngModel)]="battleNameText"/>
+        </div>
+        <div class="join-buttons" *ngIf="validatedTrooper.length === 0">
+            <label class="join-elda" (click)="join('elda')">Join Elda</label>
+            <label class="join-demetos" (click)="join('demetos')">Join Demetos</label>
+        </div>
+
+        <div *ngIf="validatedTrooper.length !== 0 && enoughSpaceToAddTroopers()" class="button-add-wrappers">
+                <label *ngIf="selectedTeam === 'elda'" style="color: #41faff; font-size: xx-large;">
+                    Elda
+                </label>
+                <label *ngIf="selectedTeam === 'demetos'" style="color: #f16d24; font-size: xx-large;">
+                    Demetos
+                </label>
+                <label class="button" (click)="join(selectedTeam)">
+                    Add Troopers
+                </label>
+        </div>
+        <div class="troopers-list" *ngIf="validatedTrooper.length !== 0">
+            <div *ngFor="let trooper of validatedTrooper" class="trooper-battle">
+                <div class="delete-trooper" (click)="deleteTrooperFromValidated(trooper)">
+                    <label style="text-align: center;">
+                        X
+                    </label>    
+                </div>
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <label>Trooper #{{trooper.idToken}}</label>
+                    <img [src]="trooper.image"/>
+                </div>
+                <div class="stats">
+                    <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
+                    <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
+                    <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
+                    <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.energy}} </p>
+                    <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{trooper.precision}} </p>
+                    <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
+                    <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <label class="button-create"  (click)="cancelBattleCreation()">
+                Cancel
+            </label>
+            <label class="button-validate" [ngClass]="{'disable': battleNameText === '' || validatedTrooper.length === 0 }" (click)="validateBattle()">
+                Validate
+            </label>
+        </div>
+    </div>
+    
+    <div class="add-troopers-modal" *ngIf="battleCreation && showAddTroopers">
+        <div class="modal-wrapper">
+            <div class="validate">
+                <label (click)="validateAddTrooper()">
+                    Validate
+                </label>
+            </div>
+            <div style="overflow-y: scroll; height: 80%; margin-top: 120px;">
+                <div *ngIf="currentUserNFT.length >= 0" class="troopers-wrapper">
+                    <ng-container *ngFor="let trooper of currentUserNFT;">
+                        <div class="trooper" *ngIf="!trooperAlreadtValidated(trooper)">
+                            <img [src]="trooper.image"/>
+                            <div class="stats-my-trooper">
+                                <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
+                                <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
+                                <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
+                                <p> <img src="assets/images/lighting.png" style="width: 30px;"/> {{trooper.energy}} </p>
+                                <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{trooper.precision}} </p>
+                                <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
+                                <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
+                            </div>
+                            <label *ngIf="!trooperIsInTrooperAddList(trooper) && enoughSpaceToAddTroopers()" (click)="addTrooper(trooper)">Add</label>
+                            <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">O</label>
+                        </div>
+                        <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
+                        <label *ngIf="trooper.status === 'battle'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">In battle</label> -->
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="battles-creation-wrapper" style="border-left: solid 2px;">
+        <div class="battles-creation-header">
+            <label class="battles-creation-header-title">
+                Battle List
+            </label>
+            <label class="battles-creation-header-subtitle">
+                See and join the battles created by the players
+            </label>
+        </div>
+        <div class="battles-creation-content">
+            <label class="button-create">
+                See Battles
+            </label>
+        </div>
+    </div> -->
+</div>
+
+<div class="create-battle" *ngIf="!battleCreation && !showModalJoin">
+    <label class="button-create" (click)="showBattleCreation()">
+        Create Battle
+    </label>
+</div>
+
+<div *ngIf="(teamToAdd && showAddTroopers) || showModalJoin" class="backdrop" (click)="backAddTrooper()">
+
+</div>

@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div *ngIf="userNFTs.length >= 0 && !this.loader" class="troopers-wrapper">
+<div *ngIf="userNFTs.length >= 0 && !this.loader && !showTrooper" class="troopers-wrapper">
     <div *ngFor="let trooper of userNFTs" class="trooper">
         <img 
                 [src]="trooper.image"/>
@@ -31,6 +31,11 @@
 </div>
 <div *ngIf="showTrooper && trooperToShow" class="backdrop" (click)="backShowTrooper()">
 
+</div>
+<div *ngIf="showTrooper && trooperToShow" class="button-return" (click)="backShowTrooper()">
+    <label> <span class="material-icons">
+        arrow_back
+        </span> </label>
 </div>
 <div *ngIf="showTrooper && trooperToShow" class="trooper-details">
     <div class="details-bloc border-bottom">

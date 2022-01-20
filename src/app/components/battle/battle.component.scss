@@ -3,10 +3,11 @@
 .wrapper-battle {
     display: flex;
     flex-direction: column;
+    height: 100%;
     .battle-title {
-        margin-top: 40px;
         display: flex;
         flex-direction: column;
+        margin-top: 150PX;
         width: 100%;
         justify-content: center;
         .title {
@@ -16,7 +17,6 @@
             color: #ffe329;
         }
     }
-    margin-top: 40px;
     width: 100%;
     .battle-content {
         display: flex;
@@ -128,17 +128,17 @@
 
 .modal-wrapper {
     position: absolute;
-    top: 10%;
-    left: 20%;
-    width: 60%;
-    height: 80%;
-    background-color: #121212;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #17171D;
 
     .troopers-wrapper { 
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        margin-top: 10px;
+        margin-top: 80px;
         margin-bottom: 10px;
     }
 
@@ -218,9 +218,14 @@
 }
 
 .validate {
-    margin: auto;
-    margin-bottom: 20px;
-    width: 100px;
+    position: fixed;
+    display: flex;
+    z-index: 999;
+    justify-content: center;
+    box-shadow: 0 0 5px black;
+    background-color: #17171D;
+    padding-bottom: 15px;
+    width: 100%;
     label {
         padding: 10px;
         margin-top: 20px;
@@ -231,7 +236,6 @@
         color: white;
         text-align: center;
         font-family: "Altone";
-        transform: skewX(-15deg) scale(1);
         border: 0px;
         border-radius: 8px;
         display: inline-block;
@@ -241,7 +245,6 @@
         cursor: pointer;
     }
     label:hover {
-        transform: skewX(-15deg) scale(1.1);
         box-shadow: 0px 0px 10px #478347;
     }
 }
@@ -354,15 +357,14 @@ label.add:hover {
     }
 }
 
-.stats {
+.stats-my-trooper {
     display: flex;
     flex-direction: row;
     color: #ffe329;
     justify-content: space-evenly;
-    width: 200px;
+    width: 400px;
     flex-wrap: wrap;
     font-family: "Heavitas";
-    /* justify-content: space-around; */
 
 
     img {
@@ -377,11 +379,11 @@ label.add:hover {
 
 .trooper-details {
     position: absolute;
-    top: 10%;
-    left: 20%;
-    width: 60%;
-    height: 80%;
-    background-color: #121212;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #17171D;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -511,5 +513,38 @@ label.add:hover {
     p {
         font-size: medium;
         font-family: 'Altone';
+    }
+}
+
+.button-return {
+    position: fixed;
+    bottom: 20px;
+    z-index: 999;
+    left: 20px;
+    margin: 20px;
+    label {
+        margin: 20px;
+    font-size: x-large;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: black;
+    border-radius: 50%;
+    background-color: #ffe329 !important;
+    color: black;
+    text-align: center;
+    font-family: "Altone";
+    width: 40px;
+    height: 40px;
+    border: 0px;
+    border-radius: 50%;
+    line-height: 48px;
+    transition: all 0.2s;
+    cursor: pointer;
+    }
+    label:hover {
+        transform: skewX(0) scale(1.1);
+        box-shadow: 0px 0px 10px #ffe329 !important;
     }
 }

@@ -71,6 +71,8 @@ export class MoralisService {
 
    async getUserNFTs() {
      //  Moralis.User.current()?.attributes.accounts[0]
+     // 0x1cf8b7c59560c7142085a8da527a79871872544a
+     // 0xf35be33239e42b9b9d6ab88706ef3f0ffcfbd7b3
     const options = { address: Moralis.User.current()?.attributes.accounts[0], token_address: '0x36A52262a85Bf8FE213267DA4Ed85e42e1eFeD82' };
     const currentUserNft = await Moralis.Web3API.account.getNFTsForContract(options);
     return currentUserNft.result?.map(async currNFT => {

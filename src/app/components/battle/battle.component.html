@@ -1,9 +1,28 @@
-<app-header></app-header>
 
-<div class="wrapper-battle" *ngIf="!loader">
+<div class="validate" *ngIf="!showModalDetails && !showModaljoin && !showModalRemove && !loader">
+    <label (click)="validateJoinTrooper()">
+        Validate
+    </label>
+</div>
+<div *ngIf="loader">
+    <ngx-spinner
+    [fullScreen]="false"
+    size="medium"
+    color="#ffe329"
+    bdColor="transparent"
+    type="ball-clip-rotate-multiple"
+    >
+</ngx-spinner>
+</div>
+<div *ngIf="showModalDetails && !loader" class="button-return" (click)="backDetailsTrooper()">
+    <label> <span class="material-icons">
+        arrow_back
+        </span> </label>
+</div>
+<div class="wrapper-battle" *ngIf="!showModalDetails && !showModaljoin && !showModalRemove && !loader">
     <div class="battle-title" *ngIf="!currentBattle?.data.finished && !currentBattle?.data.locked">
         <label class="title">
-            Battle N°1.
+            {{currentBattle.data.name}}
         </label><br>
         <label *ngIf="!userAlreadyInBattle().userInElda && !userAlreadyInBattle().userInDemetos" style="font-size: xx-large; font-family: 'Heavitas'; text-align: center; color: white;">
             Choose your side !
@@ -19,7 +38,7 @@
     </div>
     <div class="battle-title" *ngIf="!currentBattle.data.finished && currentBattle.data.locked">
         <label class="title">
-            Battle N°1.
+            {{currentBattle.data.name}}
         </label><br>
         <label style="font-size: xx-large; font-family: 'Heavitas'; text-align: center; color: white;">
             The battle is now locked. <br> <label style="font-family: 'Altone'; font-size: medium; margin-top: 10px;">Prepare to fight</label>
@@ -27,7 +46,7 @@
     </div>
     <div class="battle-title" *ngIf="currentBattle.data.finished && currentBattle.data.locked">
         <label class="title">
-            Battle N°1.
+            {{currentBattle.data.name}}
         </label><br>
         <label style="font-size: xx-large; font-family: 'Heavitas'; text-align: center; color: white;">
             Winner: <span *ngIf="currentBattle.data.winner === 'Demetos'" style="color: #f16d24;">{{currentBattle.data.winner}}</span> 
@@ -59,7 +78,7 @@
                 <img src="../../../assets/images/gold_trooper_red.png"/>
                 <label class="red-title">Demetos League</label>
                 <ng-container *ngIf="!currentBattle.data.locked">
-                    <label class="add-trooper" *ngIf="!userAlreadyInBattle().userInDemetos && !userAlreadyInBattle().userInElda" (click)="openModalJoin('demetos')">Join</label>
+                    <label class="add-trooper" *ngIf="!userAlreadyInBattle().userInDemetos && !userAlreadyInBattle().userInElda && teamDemetos.length < 10" (click)="openModalJoin('demetos')">Join</label>
                     <label class="add-trooper" *ngIf="userAlreadyInBattle().userInDemetos" (click)="openModalRemove('demetos')">Modify</label>
                 </ng-container>
                 <div style="display: flex; flex-direction: row; align-items: center; margin-top: 40px;">
@@ -79,7 +98,7 @@
                         <label>Trooper #{{demTrp.idToken}}</label>
                         <img [src]="demTrp.image"/>
                     </div>
-                    <div class="stats" *ngIf="!loaderTroopDetails">
+                    <div class="stats">
                         <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{demTrp.attack}} </p>
                         <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{demTrp.hp}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{demTrp.armorScore}} </p>
@@ -87,11 +106,6 @@
                         <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{demTrp.precision}} </p>
                         <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{demTrp.critical}} </p>
                         <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{demTrp.speed}} </p>
-                    </div>
-                    <div class="stats" *ngIf="loaderTroopDetails">
-                        <p> <img src="assets/images/sword.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader></p>
-                        <p> <img src="assets/images/armor.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader> </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader> </p>
                     </div>
                 </div>
             </div>
@@ -109,7 +123,7 @@
                 <img src="../../../assets/images/gold_trooper_blue.png"/>
                 <label class="blue-title">Council Of Elda</label>
                 <ng-container *ngIf="!currentBattle.data.locked">
-                    <label class="add-trooper" *ngIf="!userAlreadyInBattle().userInDemetos && !userAlreadyInBattle().userInElda" (click)="openModalJoin('elda')">Join</label>
+                    <label class="add-trooper" *ngIf="!userAlreadyInBattle().userInDemetos && !userAlreadyInBattle().userInElda && teamElda.length < 10" (click)="openModalJoin('elda')">Join</label>
                     <label class="add-trooper" *ngIf="userAlreadyInBattle().userInElda" (click)="openModalRemove('elda')">Modify</label>
                 </ng-container>
                 <div style="display: flex; flex-direction: row; align-items: center; margin-top: 40px;">
@@ -129,7 +143,7 @@
                         <label>Trooper #{{eldTrp.idToken}}</label>
                         <img [src]="eldTrp.image"/>
                     </div>
-                    <div class="stats" *ngIf="!loaderTroopDetails">
+                    <div class="stats">
                         <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{eldTrp.attack}} </p>
                         <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{eldTrp.hp}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{eldTrp.armorScore}} </p>
@@ -137,11 +151,6 @@
                         <p> <img src="assets/images/precision.png" style="width: 30px;"/> {{eldTrp.precision}} </p>
                         <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{eldTrp.critical}} </p>
                         <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{eldTrp.speed}} </p>
-                    </div>
-                    <div class="stats" *ngIf="loaderTroopDetails">
-                        <p> <img src="assets/images/sword.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader></p>
-                        <p> <img src="assets/images/armor.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader> </p>
-                        <p> <img src="assets/images/lighting.png" style="width: 20px;"/> <ngx-skeleton-loader count="1" appearance="line" animation="pulse" style="width: 30px; height: 23px;"></ngx-skeleton-loader> </p>
                     </div>
                 </div>
             </div>
@@ -167,16 +176,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="loader">
-    <ngx-spinner
-            [fullScreen]="false"
-            size="medium"
-            color="#ffe329"
-            bdColor="transparent"
-            type="ball-clip-rotate-multiple"
-            >
-        </ngx-spinner>
-</div>
+
 
 <div *ngIf="teamToAddTo && showModaljoin" class="backdrop" (click)="backAddTrooper()">
 
@@ -188,12 +188,12 @@
             Validate
         </label>
     </div>
-    <div style="overflow-y: scroll; height: 80%;">
+    <div style="overflow-y: scroll; height: 100%;">
         <div *ngIf="currentUserNFT.length >= 0" class="troopers-wrapper">
             <ng-container *ngFor="let trooper of currentUserNFT">
                 <div *ngIf="!trooperAlreadyInTeam(trooper, teamToAddTo)" class="trooper">
                     <img [src]="trooper.image"/>
-                    <div class="stats">
+                    <div class="stats-my-trooper">
                         <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
                         <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
@@ -202,7 +202,7 @@
                         <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
                         <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
                     </div>
-                    <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
+                    <label *ngIf="!trooperIsInTrooperAddList(trooper) && enoughSpaceToAddTroopers()" (click)="addTrooper(trooper)">Add</label>
                     <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">O</label>
                 </div>
                 <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>
@@ -230,7 +230,7 @@
                 <div *ngIf="trooperAlreadyInTeam(trooper, teamToRemoveFrom)" class="trooper">
                     <img 
                     [src]="trooper.image"/>
-                    <div class="stats">
+                    <div class="stats-my-trooper">
                         <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
                         <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
@@ -249,7 +249,7 @@
                 <div *ngIf="!trooperAlreadyInTeam(trooper, teamToRemoveFrom)" class="trooper">
                     <img 
                     [src]="trooper.image"/>
-                    <div class="stats">
+                    <div class="stats-my-trooper">
                         <p> <img src="assets/images/sword.png" style="width: 30px;"/> {{trooper.attack}} </p>
                         <p> <img src="assets/images/heartbeat.png" style="width: 30px;"/> {{trooper.hp}} </p>
                         <p> <img src="assets/images/armor.png" style="width: 30px;"/> {{trooper.armorScore}} </p>
@@ -258,7 +258,7 @@
                         <p> <img src="assets/images/headshot.png" style="width: 30px;"/> {{trooper.critical}} </p>
                         <p> <img src="assets/images/speedometer.png" style="width: 30px;"/> {{trooper.speed}} </p>
                     </div>
-                    <label *ngIf="!trooperIsInTrooperAddList(trooper)" (click)="addTrooper(trooper)">Add</label>
+                    <label *ngIf="!trooperIsInTrooperAddList(trooper) && enoughSpaceToAddTroopers()" (click)="addTrooper(trooper)">Add</label>
                     <label class="add" *ngIf="trooperIsInTrooperAddList(trooper)" (click)="removeTrooperFromAddList(trooper)">0</label>
                 </div>
                 <!-- <label *ngIf="trooper.status === 'ready'" style="color:#ffef86; cursor: pointer; font-family: 'Heavitas';" routerLink="/battle">Ready to fight</label>

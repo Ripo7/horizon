@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { BattleComponent } from './components/battle/battle.component';
+import { BattlesComponent } from './components/battles/battles.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +15,7 @@ const routes: Routes = [
   //{ path: 'mint', component: HomeEthComponent },
   { path: 'home', component: HomeComponent },
   { path: 'my-troopers', canActivate: [AuthGuard], component: MyTroopersComponent },
-  { path: 'battle', canActivate: [AuthGuard], component: BattleComponent },
+  { path: 'battles', canActivate: [AuthGuard], component: BattlesComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

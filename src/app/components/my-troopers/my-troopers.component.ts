@@ -33,14 +33,21 @@ export class MyTroopersComponent implements OnInit {
     this.spinner.show();
     this.moralisService.getUserNFTs().then(nftObs => {
       let count = 0;
+      let uncount = 0;;
       nftObs?.forEach(nft => {
         nft.then((data: any) => {
-          console.log("data", data);
-          let tmpData = data[0].data;
-          this.userNFTs.push(tmpData);
-          count ++;
-          if (count === nftObs.length) {
-            this.loader = false;
+          if (data[0]) {
+            let tmpData = data[0].data;
+            this.userNFTs.push(tmpData);
+            count ++;
+            if (count === nftObs.length - uncount) {
+              this.loader = false;
+            } 
+          } else {
+            uncount++;
+            if (count === nftObs.length - uncount) {
+              this.loader = false;
+            } 
           }
         })
       })

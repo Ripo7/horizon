@@ -23,6 +23,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { BattlesComponent } from './components/battles/battles.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     BattleComponent,
     RulesComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    BattlesComponent
   ],
   imports: [
     BrowserModule,
