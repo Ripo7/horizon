@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
-import { arrayRemove, arrayUnion } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, where } from 'firebase/firestore';
 import { FightService } from './fight.service';
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class BattleService {
     this.battleRef = this.db.collection(this.dbPath);
   }
 
-  getBattleRealTime() {
-    return this.battleRef.snapshotChanges().pipe(
+  getBattleNotFinished() {
+    return this.db.collection(this.dbPath, ref => ref.where("finished","==", false)).snapshotChanges().pipe(
       map(battle => {
         return battle.map(a => {
           let tmpBat = {

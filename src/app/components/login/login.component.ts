@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { MoralisService } from 'src/app/services/moralis.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -13,13 +14,19 @@ export class LoginComponent implements OnInit {
 
   password: string = '';
 
-  constructor(private userService: UsersService,  private localStorage: LocalStorageService) { }
+  constructor(private userService: UsersService,  private localStorage: LocalStorageService, private moralisService: MoralisService) { }
 
   ngOnInit(): void {
   }
 
   login() {
     this.userService.login({ email: this.email, password: this.password})
+  }
+
+  loginWithSolana() {
+
+    this.moralisService.loginSolana().then(data => { {
+    }})
   }
 
 }

@@ -24,6 +24,9 @@ import { environment } from 'src/environments/environment';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { BattlesComponent } from './components/battles/battles.component';
+import { InventoryComponent } from './components-orc/inventory/inventory.component';
+import { HomeOrcComponent } from './components-orc/home-orc/home-orc.component';
+import { HeaderOrcComponent } from './components-orc/header-orc/header-orc.component';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import { BattlesComponent } from './components/battles/battles.component';
     RulesComponent,
     SignupComponent,
     LoginComponent,
-    BattlesComponent
+    BattlesComponent,
+    InventoryComponent,
+    HomeOrcComponent,
+    HeaderOrcComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { HomeOrcComponent } from './components-orc/home-orc/home-orc.component';
+import { InventoryComponent } from './components-orc/inventory/inventory.component';
 import { BattleComponent } from './components/battle/battle.component';
 import { BattlesComponent } from './components/battles/battles.component';
 
@@ -10,15 +12,26 @@ import { MyTroopersComponent } from './components/my-troopers/my-troopers.compon
 import { RulesComponent } from './components/rules/rules.component';
 import { SignupComponent } from './components/signup/signup.component';
 
+
+// const routes: Routes = [
+//   // { path: 'mint', component: HomeTronComponent },
+//   //{ path: 'mint', component: HomeEthComponent },
+//   { path: 'home', component: HomeComponent },
+//   // { path: 'my-troopers', canActivate: [AuthGuard], component: MyTroopersComponent },
+//   // { path: 'battles', canActivate: [AuthGuard], component: BattlesComponent },
+//   // { path: 'rules', component: RulesComponent },
+//   // { path: 'login', component: LoginComponent },
+//   // { path: 'signup', component: SignupComponent },
+//   { path: '**', redirectTo:  '/home'}
+// ];
+
 const routes: Routes = [
-  // { path: 'mint', component: HomeTronComponent },
-  //{ path: 'mint', component: HomeEthComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'my-troopers', canActivate: [AuthGuard], component: MyTroopersComponent },
-  { path: 'battles', canActivate: [AuthGuard], component: BattlesComponent },
-  { path: 'rules', component: RulesComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'home', component: HomeOrcComponent },
+  { path: 'inventory', canActivate: [AuthGuard], component: InventoryComponent },
+  // { path: 'battles', canActivate: [AuthGuard], component: BattlesComponent },
+  // { path: 'rules', component: RulesComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'signup', component: SignupComponent },
   { path: '**', redirectTo:  '/home'}
 ];
 

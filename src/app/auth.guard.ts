@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
         return true 
       } else {
         this.router.navigate(['home']).then(() => {
-          this.moralisService.loginWithMetamask();
+          this.moralisService.loginSolana();
         })
         return false;
       }

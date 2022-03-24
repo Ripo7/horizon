@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { first, map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class MoralisService {
 
   changeDetectorRef: any;
 
-  constructor(private httpService: HttpClient, private router: Router, private db: AngularFirestore) { 
+  constructor(private httpService: HttpClient, private router: Router, private db: AngularFirestore, private aFireAuth: AngularFireAuth) { 
     Moralis.start({
       appId: environment.moralis.appId,
       serverUrl: environment.moralis.serverUrl,
@@ -32,13 +33,13 @@ export class MoralisService {
     this.changeDetectorRef = cdr;
   }
 
-  async loginWithMetamask() {
-      Moralis.Web3.authenticate({ provider: 'metamask', signingMessage: 'Connect to Hor1zon Civil War' })
-          .then((loggedInUser) => {
-            console.log("loggedInUser", loggedInUser);
-          })
-          .catch((e) => console.error(`Moralis metamask login error:`, e));
-  }
+  // async loginWithMetamask() {
+  //     Moralis.Web3.authenticate({ provider: 'metamask', signingMessage: 'Connect to Hor1zon Civil War' })
+  //         .then((loggedInUser) => {
+  //           console.log("loggedInUser", loggedInUser);
+  //         })
+  //         .catch((e) => console.error(`Moralis metamask login error:`, e));
+  // }
 
   // loginWalletConnect() {
   //   Moralis.Web3.authenticate({ provider: 'walletconnect', signingMessage: 'Connect to Galleria' })
@@ -51,12 +52,12 @@ export class MoralisService {
   //         .catch((e) => console.error(`Moralis walletconnect login error:`, e));
   // }
 
-  // async loginSolana() {
-  //   Moralis.Web3.authenticate({type:'sol'}).then(function(user) {
-  //     console.log(user.get('solAddress'))
-  //     console.log("moralis current suer sol", Moralis.User.current());
-  //   })
-  // }
+  async loginSolana() {
+    Moralis.authenticate({type:'sol'}).then(function(user) {
+      console.log(user.get('solAddress'))
+      console.log("moralis current suer sol", Moralis.User.current());
+    })
+  }
 
   logout() {
     Moralis.User.logOut()
@@ -106,5 +107,53 @@ export class MoralisService {
           })
         })
     );
+  }
+
+  signupWithEmmail(email: string, password: string) {
+    return this.aFireAuth.createUserWithEmailAndPassword(email, password)
+    .then((result) => {
+      return result;
+      /* Call the SendVerificaitonMail() function when new user sign 
+      up and returns promise */
+      // this.SetUserData(result.user);
+    }).catch((error) => {
+      window.alert(error.message)
+    })
+  }
+
+  signInWithEmail(email: string, password: string) {
+    return this.aFireAuth.signInWithEmailAndPassword(email, password)
+    .then((result) => {
+      /* Call the SendVerificaitonMail() function when new user sign 
+      up and returns promise */
+      // this.SetUserData(result.user);
+    }).catch((error) => {
+      window.alert(error.message)
+    })
+  }
+
+  signout() {
+    return this.aFireAuth.signOut().then(() =>  {
+      this.router.navigate(['/signin']);
+    });
+  }
+
+  getSolanaNFT(iri: string) {
+    return this.httpService.get(iri);
+  }
+
+  getNftFromFirebase(mintAddress: string) {
+    return this.db.collection('/nfts', ref => ref.where("mintAddress","==", mintAddress)).snapshotChanges().pipe(
+      first(),
+      map(battle => {
+        return battle.map(a => {
+          return a.payload.doc.data();
+        })
+      })
+    );
+  }
+
+  AddNftInFirebase(dataToAdd: any) {
+    return this.db.collection('/nfts').add(dataToAdd);
   }
 }

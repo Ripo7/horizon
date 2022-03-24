@@ -59,7 +59,7 @@ export class BattlesComponent implements OnInit {
   }
 
   loadBattles() {
-    this.battleService.getBattleRealTime().pipe(
+    this.battleService.getBattleNotFinished().pipe(
       first(),
       tap((battles: any) => {
         this.battles = battles;

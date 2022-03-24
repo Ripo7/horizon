@@ -19,17 +19,17 @@ export class AppComponent {
     initializeApp(environment.firebaseConfig)
   }
 
-  goToLogin() {
-    this.moralisService.loginWithMetamask();
-  }
+  // goToLogin() {
+  //   this.moralisService.loginWithMetamask();
+  // }
 
   // goToLoginWallet() {
   //   this.morService.loginWalletConnect();
   // }
 
-  // goToLoginSolana() {
-  //   this.morService.loginSolana();
-  // }
+  goToLoginSolana() {
+    this.moralisService.loginSolana();
+  }
 
   logout() {
     this.moralisService.logout();

@@ -1,0 +1,42 @@
+.header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 216px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    .title  {
+        color: white;
+        font-size: x-large;
+        margin: 30px 0px;
+        margin-left: 20px;
+        transition: color 0.5s, border 0.5s, box-shadow 0.5s;
+        white-space: nowrap;
+        padding: 30px;
+        text-align: center;
+        border: solid 3px transparent;
+        flex-direction: column;
+        display: flex;
+        box-shadow: 0 0 10px black;
+        border-radius: 20px;
+        cursor: pointer;
+        label {
+            cursor: pointer;
+        }
+    }
+
+    .title:hover {
+        color: #ff8700;
+        box-shadow: 0 0 10px #00ff00;
+        border: solid 3px #00ff00;
+    }   
+
+    .title.active {
+        color: #ff8700;
+        border: solid 3px #00ff00;
+        box-shadow: 0 0 10px #00ff00;
+    }
+}

@@ -33,9 +33,9 @@ export class HomeComponent implements OnInit {
     this.sideToSee = side;
   }
 
-  goToLogin() {
-    this.morService.loginWithMetamask();
-  }
+  // goToLogin() {
+  //   this.morService.loginWithMetamask();
+  // }
 
   logout() {
     this.morService.logout();

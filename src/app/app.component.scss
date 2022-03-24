@@ -7,15 +7,15 @@
     button {
         padding: 20px;
         border: none;
-        background-color:  #ffe329;
+        background-color:  #00ff00;
         border: solid 2px transparent;
         color: #17171D;
-        border-radius: 50px;
+        border-radius: 10px;
         transition: box-shadow 0.5s, border 0.5s;
         cursor: pointer;
         font-family: 'Heavitas';
     }
     button:hover {
-        box-shadow: 0 0 10px #ffe329;
+        box-shadow: 0 0 10px #00ff00;
     }
 }

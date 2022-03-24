@@ -1,0 +1,22 @@
+<div class="header-wrapper">
+    <div class="title" routerLink="/home" routerLinkActive="active">
+        <label>
+            <span class="material-icons">
+                home
+            </span>
+        </label>
+        <label class="label">
+            Home
+        </label>
+    </div>
+    <div *ngIf="getUserLogged()" class="title" routerLink="/inventory" routerLinkActive="active">
+        <label>
+            <span class="material-icons">
+                business_center
+            </span>
+        </label>
+        <label class="label">
+            Inventory
+        </label>
+    </div>
+</div>

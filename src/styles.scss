@@ -1,11 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
-    background: #17171D;
-    font-weight: bold;
-    margin: 0;
-}
-
+body { margin: 0; font-family: 'Roboto Mono'; background-color: #17171e; }
 @font-face {
     font-family: "AltoneBold";
     src: local("AltoneBold"), url(./assets/fonts/AltoneTrial-Bold.ttf) format("truetype");

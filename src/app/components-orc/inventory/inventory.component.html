@@ -1,0 +1,58 @@
+<app-header-orc></app-header-orc>
+
+<div class="wrapper-inventory"> 
+    <ng-container *ngIf="loader">
+        <ngx-spinner
+        [fullScreen]="false"
+        bdColor="rgba(0, 0, 0, 0.7)"
+        size="medium"
+        type="la-ball-clip-rotate-multiple"
+      >
+        <p class="loading">Loading inventory...</p>
+      </ngx-spinner>
+    </ng-container>
+    <ng-container *ngIf="!loader">
+        <label class="title-label">
+            Orcs
+        </label>
+        <div class="nft-list" *ngIf="nftOrcList.length > 0">
+            <div *ngFor="let orc of nftOrcList" class="nft">
+                <img [src]="orc.image" class="nft-img"/>
+                <label>
+                    {{orc.name}}
+                </label>
+            </div>
+        </div>
+        <div class="no-nft" *ngIf="nftOrcList.length === 0">
+            <label>
+                No Orcs.
+            </label>
+            <div class="link">
+                <label (click)="goTo('https://magiceden.io/marketplace/orc')">
+                    Magic Eden
+                </label>
+            </div>
+        </div>
+        <label class="title-label" style="margin-top: 80px;">
+            Cars
+        </label>
+        <div class="nft-list" *ngIf="nftOrcCarList.length > 0">
+            <div *ngFor="let car of nftOrcCarList" class="nft">
+                <img [src]="car.image" class="nft-img"/>
+                <label>
+                    {{car.name}}
+                </label>
+            </div>
+        </div>
+        <div class="no-nft" *ngIf="nftOrcCarList.length === 0">
+            <label>
+                No Cars.
+            </label>
+            <div class="link">
+                <label (click)="goTo('https://magiceden.io/marketplace/orcars')">
+                    Magic Eden
+                </label>
+            </div>
+        </div>
+    </ng-container>
+</div>

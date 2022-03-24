@@ -38,6 +38,14 @@ export class FightService {
   }
 
   fight(battle: any, elda: any, demetos: any) {
+    let resultElda = [...elda];
+    resultElda.map(element => {
+      return {...element, damageDealt: 0, damageTaken: 0, kills: 0};
+    })
+    let resultDemetos= [...demetos];
+    resultDemetos.map(element => {
+      return {...element, damageDealt: 0, damageTaken: 0, kills: 0};
+    })
     let battleFinish = false;
     let eldaSpePoint = 0;
     let demetosSpePoint = 0;
@@ -60,66 +68,82 @@ export class FightService {
           if (this.demetosTroop.speed < this.eldaTroop.speed) {
             let damageDemetos =  this.calculateTroopDamage(this.eldaTroop, this.demetosTroop);
             this.demetosTroop.hp = this.demetosTroop.hp - damageDemetos;
-            this.result.push({
-                type: 'attack',
-                attacker: 'Elda',
-                text: `Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP) deals ${damageDemetos} to Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP)`
-              } 
-            );
+            let eldaIndex = resultElda.findIndex(el => el.idToken === this.eldaTroop.idToken);
+            resultElda[eldaIndex].damageDealt = resultElda[eldaIndex].damageDealt + damageDemetos;
+            // this.result.push({
+            //     type: 'attack',
+            //     attacker: 'Elda',
+            //     text: `Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP) deals ${damageDemetos} to Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP)`
+            //   } 
+            // );
             if (this.demetosTroop.hp <= 0) {
               fightFinish = true;
-              this.result.push({
-                type: 'info',
-                killed: 'Demetos',
-                text: `Trooper #${this.demetosTroop.idToken} is killed by Trooper #${this.eldaTroop.idToken}`
-              });
+              let eldaIndex = resultElda.findIndex(el => el.idToken === this.eldaTroop.idToken);
+              resultElda[eldaIndex].kills = resultElda[eldaIndex].kills + 1;
+              // this.result.push({
+              //   type: 'info',
+              //   killed: 'Demetos',
+              //   text: `Trooper #${this.demetosTroop.idToken} is killed by Trooper #${this.eldaTroop.idToken}`
+              // });
             } else {
               let damageElda = this.calculateTroopDamage(this.demetosTroop, this.eldaTroop);
               this.eldaTroop.hp = this.eldaTroop.hp - damageElda;
-              this.result.push({
-                  type: 'attack',
-                  attacker: 'Demetos',
-                  text: `Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP) deals ${damageElda} to Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP)`
-                }
-              );
+              let demetosIndex = resultDemetos.findIndex(el => el.idToken === this.demetosTroop.idToken);
+              resultDemetos[demetosIndex].damageDealt = resultDemetos[demetosIndex].damageDealt + damageElda;
+              // this.result.push({
+              //     type: 'attack',
+              //     attacker: 'Demetos',
+              //     text: `Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP) deals ${damageElda} to Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP)`
+              //   }
+              // );
               if (this.eldaTroop.hp <= 0) {
                 fightFinish = true;
-                this.result.push({
-                  type: 'info',
-                  killed: 'Elda',
-                  text: `Trooper #${this.eldaTroop.idToken} is killed by Trooper #${this.demetosTroop.idToken}`
-                });
+                let demetosIndex = resultDemetos.findIndex(el => el.idToken === this.demetosTroop.idToken);
+                resultDemetos[demetosIndex].kills = resultDemetos[demetosIndex].kills + 1;
+                // this.result.push({
+                //   type: 'info',
+                //   killed: 'Elda',
+                //   text: `Trooper #${this.eldaTroop.idToken} is killed by Trooper #${this.demetosTroop.idToken}`
+                // });
               }
             }
           } else {
             let damageElda =  this.calculateTroopDamage(this.demetosTroop, this.eldaTroop);
               this.eldaTroop.hp = this.eldaTroop.hp - damageElda;
-              this.result.push({
-                  type: 'attack',
-                  attacker: 'Demetos',
-                  text: `Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP) deals ${damageElda} to Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP)`
-                });
+              let demetosIndex = resultDemetos.findIndex(el => el.idToken === this.demetosTroop.idToken);
+              resultDemetos[demetosIndex].damageDealt = resultDemetos[demetosIndex].damageDealt + damageElda;
+              // this.result.push({
+              //     type: 'attack',
+              //     attacker: 'Demetos',
+              //     text: `Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP) deals ${damageElda} to Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP)`
+              //   });
               if (this.eldaTroop.hp <= 0) {
                 fightFinish = true;
-                this.result.push({
-                  type: 'info',
-                  killed: 'Elda',
-                  text: `Trooper #${this.eldaTroop.idToken} is killed by Trooper #${this.demetosTroop.idToken}`
-                });
+                let demetosIndex = resultDemetos.findIndex(el => el.idToken === this.demetosTroop.idToken);
+                resultDemetos[demetosIndex].kills = resultDemetos[demetosIndex].kills + 1;
+                // this.result.push({
+                //   type: 'info',
+                //   killed: 'Elda',
+                //   text: `Trooper #${this.eldaTroop.idToken} is killed by Trooper #${this.demetosTroop.idToken}`
+                // });
               } else {
                 let damageDemetos =  this.calculateTroopDamage(this.eldaTroop, this.demetosTroop);
                 this.demetosTroop.hp = this.demetosTroop.hp - damageDemetos;
-                this.result.push({
-                  type: 'attack',
-                  attacker: 'Elda',
-                  text: `Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP) deals ${damageDemetos} to Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP)`
-                });
+                let eldaIndex = resultElda.findIndex(el => el.idToken === this.eldaTroop.idToken);
+                resultElda[eldaIndex].damageDealt = resultElda[eldaIndex].damageDealt + damageDemetos;
+                // this.result.push({
+                //   type: 'attack',
+                //   attacker: 'Elda',
+                //   text: `Trooper #${this.eldaTroop.idToken} (${this.eldaTroop.hp} HP) deals ${damageDemetos} to Trooper #${this.demetosTroop.idToken} (${this.demetosTroop.hp} HP)`
+                // });
                 if (this.demetosTroop.hp <= 0) {
-                  this.result.push({
-                    type: 'info',
-                    killed: 'Demetos',
-                    text: `Trooper #${this.demetosTroop.idToken} is killed by Trooper #${this.eldaTroop.idToken}`
-                  });
+                  let eldaIndex = resultElda.findIndex(el => el.idToken === this.eldaTroop.idToken);
+                  resultElda[eldaIndex].kills = resultElda[eldaIndex].kills + 1;
+                  // this.result.push({
+                  //   type: 'info',
+                  //   killed: 'Demetos',
+                  //   text: `Trooper #${this.demetosTroop.idToken} is killed by Trooper #${this.eldaTroop.idToken}`
+                  // });
                   fightFinish = true;
                 }
               }
@@ -148,7 +172,7 @@ export class FightService {
       }
     }
     this.result.push(`Winner: ${this.winnerBattle}`);
-    return { result: this.result, winner: this.winnerBattle};
+    return { result: {elda: resultElda, demetos: resultDemetos}, winner: this.winnerBattle};
  // }
 }
 
