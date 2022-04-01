@@ -14,6 +14,8 @@ export class InventoryComponent implements OnInit {
 
   loader = true;
 
+  nftToShow: any = null;
+
   totalUserNft: Array<any> = [];
 
   nftOrcList: Array<any> = [];
@@ -90,4 +92,13 @@ export class InventoryComponent implements OnInit {
     window.location.href = url;
   }
 
+  showNft(nft: any) {
+    console.log("nft", nft);
+    this.nftToShow = nft;
+  }
+
+  back() {
+    this.nftToShow = null;
+  }
+  
 }

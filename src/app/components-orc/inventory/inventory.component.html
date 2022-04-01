@@ -1,6 +1,6 @@
 <app-header-orc></app-header-orc>
 
-<div class="wrapper-inventory"> 
+<div class="wrapper-inventory" *ngIf="!nftToShow"> 
     <ng-container *ngIf="loader">
         <ngx-spinner
         [fullScreen]="false"
@@ -17,7 +17,7 @@
         </label>
         <div class="nft-list" *ngIf="nftOrcList.length > 0">
             <div *ngFor="let orc of nftOrcList" class="nft">
-                <img [src]="orc.image" class="nft-img"/>
+                <img [src]="orc.image" class="nft-img" (click)="showNft(orc)"/>
                 <label>
                     {{orc.name}}
                 </label>
@@ -38,7 +38,7 @@
         </label>
         <div class="nft-list" *ngIf="nftOrcCarList.length > 0">
             <div *ngFor="let car of nftOrcCarList" class="nft">
-                <img [src]="car.image" class="nft-img"/>
+                <img [src]="car.image" class="nft-img" (click)="showNft(car)"/>
                 <label>
                     {{car.name}}
                 </label>
@@ -55,4 +55,20 @@
             </div>
         </div>
     </ng-container>
+</div>
+
+<div *ngIf="nftToShow" class="nft-detail-wrapper">
+    <div class="detail-card">
+        <div class="image">
+            <img class="nft-img-detail"[src]="nftToShow.image"/>
+        </div>
+        <div class="details">
+            <label *ngFor="let trait of nftToShow.attributes">{{trait.trait_type}}: {{trait.value}}</label>
+        </div>
+    </div>
+    <div class="back" (click)="back()">
+        <span class="material-icons">
+            cancel
+        </span>
+    </div>
 </div>
