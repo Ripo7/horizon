@@ -23,10 +23,13 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { BattlesComponent } from './components/battles/battles.component';
+import { BattlesComponent } from './components-orc/battles/battles.component';
 import { InventoryComponent } from './components-orc/inventory/inventory.component';
 import { HomeOrcComponent } from './components-orc/home-orc/home-orc.component';
 import { HeaderOrcComponent } from './components-orc/header-orc/header-orc.component';
+import { CreateBattleComponent } from './components-orc/create-battle/create-battle.component';
+import { MyBattlesComponent } from './components-orc/my-battles/my-battles.component';
+import { DetailBattleComponent } from './components-orc/detail-battle/detail-battle.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { HeaderOrcComponent } from './components-orc/header-orc/header-orc.compo
     BattlesComponent,
     InventoryComponent,
     HomeOrcComponent,
-    HeaderOrcComponent
+    HeaderOrcComponent,
+    CreateBattleComponent,
+    MyBattlesComponent,
+    DetailBattleComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,194 @@
+.player-list {
+    margin-top: 100px; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-evenly; 
+    flex-wrap: wrap; 
+    padding: 30px;
+    align-items: center;
+}
+
+.player-card {
+    height: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    transition: all 0.5s;
+    align-items: center;
+    cursor: pointer;
+
+    box-shadow: 0 0 10px black;
+
+    margin: 50px;
+
+    .player-card-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #478347;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        label {
+            margin: 10px;
+            font-family: 'Heavitas';
+            color: #17171e;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+    .player-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        font-size: x-large;
+        transition: background-color 0.5s, color 0.5s;
+        height: 100%;
+    }
+    div {
+        width: 100%;
+    }
+    p {
+        color: #de2828;
+        margin: 20px;
+    }
+    .player-card-content.add:hover {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background-color: #478347;
+        .material-icons {
+            color: #17171e;
+        }
+    }
+}
+
+.material-icons {
+    color: #478347;
+    font-size: 50px;
+}
+
+.join-battle-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .name {
+        color: #478347;
+        font-size: x-large;
+        font-family: 'Heavitas';
+        margin: 20px;
+    }
+
+    .input-name {
+        margin: 20px;
+        width: 200px;
+        border: solid #478347 1px;
+        background-color: #17171e;
+        box-shadow: none;
+        border-radius: 10px;
+        color: #478347;
+        padding: 10px;
+        transition: all 0.25s;
+
+    }
+    .input-name:focus { 
+        outline: none !important;
+        border-color: #478347;
+        box-shadow: 0 0 10px #478347;
+    }
+}
+
+.nft-list {
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+    flex-wrap: wrap;
+
+    .nft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        label {
+            text-align: center;
+            margin: 10px;
+            margin-top: 20px;
+            font-size: large;
+            color: #de2828;
+        }
+
+    }
+}
+
+.nft-img {
+    border: solid 3px transparent;
+    box-shadow: 0 0 10px transparent;
+    width: 80px; 
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.5s, border 0.5s, box-shadow 0.5s;
+}
+
+.nft-selected {
+    border: solid 3px #478347;
+    box-shadow: 0 0 10px #478347;
+    transform: skewX(0) scale(1.1) !important;
+}
+
+.nft-img:hover {
+    border: solid 3px #478347;
+    box-shadow: 0 0 10px #478347;
+    transform: skewX(0) scale(1.1) !important;
+}
+
+.choose {
+    color: #478347;
+}
+
+.button-create {
+    padding: 10px 40px;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #dd2323;
+    box-shadow: 0 0 10px transparent;
+    transition: all 0.5s;
+    font-weight: bold;
+    color: white;
+    cursor: not-allowed;
+}
+.button-create:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #dd2323;
+}
+
+.battle-ready {
+    background-color: #478347;
+    cursor: pointer;
+}
+
+.battle-ready:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #478347;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #478347;
+    margin: 20px;
+    .material-icons {
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 0 10px transparent;
+        transition: all 0.5s;
+        font-size: xx-large;
+    }
+    .material-icons:hover {
+        transform: skewX(0) scale(1.3) !important;
+    }
+}

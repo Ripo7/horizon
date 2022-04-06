@@ -1,0 +1,47 @@
+<app-header-orc></app-header-orc>
+
+<div class="battle-wrapper">
+    <ng-container *ngIf="!showMyBattle && !showCreateBattle && !showJoinBattle && !showDetailBattle">
+        <label class="button" (click)="show('join')">
+            Join Battle
+        </label>
+        <label class="button" (click)="show('my-battles')">
+            My Battles
+        </label>
+        <label class="button" (click)="show('create')">
+            Create Battle
+        </label>
+    </ng-container>
+    <ng-container *ngIf="showMyBattle">
+        <app-my-battles></app-my-battles>
+    </ng-container>
+    <ng-container *ngIf="showCreateBattle">
+        <app-create-battle (evtBattleReady)="show('')"></app-create-battle>
+    </ng-container>
+    <div *ngIf="showJoinBattle && !showDetailBattle && battleToJoin.length > 0" class="battle-list">
+        <div *ngFor="let battle of battleToJoin" class="battle-card" (click)="show('detail', battle)">
+            <div class="battle-card-header">
+                <label>
+                    {{battle.data.name}}
+                </label>
+            </div>
+            <div class="battle-card-content">
+                <label>
+                    {{battle.data.numberAttender}} / 5
+                </label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showJoinBattle && !showDetailBattle && battleToJoin.length === 0" class="battle-list" style="color: #478347;">
+        No battle to join.
+    </div>
+    <ng-container *ngIf="showDetailBattle && selectedBattle">
+        <app-detail-battle (evtJoinReady)="show('join')" [selectedBattle]="selectedBattle"></app-detail-battle>
+    </ng-container>
+</div>
+
+<div class="back" (click)="show('')" *ngIf="showJoinBattle">
+    <span class="material-icons">
+        cancel
+    </span>
+</div>

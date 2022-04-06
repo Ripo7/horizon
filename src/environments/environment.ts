@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   moralis: {
-    appId: '4yigCoposSOvBBBdAkQIYjGLf6lvYyOrG8BMrnKC',
-    serverUrl: 'https://ptb7cjnacgdr.usemoralis.com:2053/server'
+    appId: 'oefVdHb6gz6YeunG4fNkXohze88tvfzcAaPZxoUw',
+    serverUrl: 'https://sphvvebpqivu.usemoralis.com:2053/server'
   },
   firebaseConfig: {
     apiKey: "AIzaSyC8QF5NpoUhbCTLRbs8gtr6P6xlhzPUie8",

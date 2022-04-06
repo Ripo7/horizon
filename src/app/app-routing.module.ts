@@ -4,7 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { HomeOrcComponent } from './components-orc/home-orc/home-orc.component';
 import { InventoryComponent } from './components-orc/inventory/inventory.component';
 import { BattleComponent } from './components/battle/battle.component';
-import { BattlesComponent } from './components/battles/battles.component';
+import { BattlesComponent } from './components-orc/battles/battles.component';
 
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -28,6 +28,7 @@ import { SignupComponent } from './components/signup/signup.component';
 const routes: Routes = [
   { path: 'home', component: HomeOrcComponent },
   { path: 'inventory', canActivate: [AuthGuard], component: InventoryComponent },
+  { path: 'battles', canActivate: [AuthGuard], component: BattlesComponent },
   // { path: 'battles', canActivate: [AuthGuard], component: BattlesComponent },
   // { path: 'rules', component: RulesComponent },
   // { path: 'login', component: LoginComponent },

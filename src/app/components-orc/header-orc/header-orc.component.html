@@ -19,4 +19,14 @@
             Inventory
         </label>
     </div>
+    <div *ngIf="getUserLogged()" class="title" routerLink="/battles" routerLinkActive="active">
+        <label>
+            <span class="material-icons">
+                security
+            </span>
+        </label>
+        <label class="label">
+            Battles
+        </label>
+    </div>
 </div>

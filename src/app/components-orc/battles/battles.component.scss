@@ -1,0 +1,113 @@
+.battle-wrapper {
+    margin-left: 216px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .logo-lore {
+        width: 300px;
+    }
+
+    label.button {
+        color: white;
+        font-size: x-large;
+        margin: 30px 0px;
+        margin-left: 20px;
+        transition: color 0.5s, border 0.5s, box-shadow 0.5s;
+        white-space: nowrap;
+        padding: 15px 30px;
+        text-align: center;
+        border: solid 3px transparent;
+        flex-direction: column;
+        display: flex;
+        box-shadow: 0 0 10px black;
+        border-radius: 20px;
+        cursor: pointer;
+        label {
+            cursor: pointer;
+        }
+    }
+
+    label.button:hover {
+        color: #de2828;
+        box-shadow: 0 0 10px #478347;
+        border: solid 3px #478347;
+    }   
+}
+
+.battle-list {
+    margin-top: 100px; 
+    display: flex; 
+    justify-content: space-evenly; 
+    flex-wrap: wrap; 
+    padding: 30px;
+}
+
+.battle-card {
+    width: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    transition: all 0.5s;
+    align-items: center;
+    cursor: pointer;
+
+    box-shadow: 0 0 10px black;
+
+    margin: 20px;
+
+    .battle-card-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #478347;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        label {
+            margin: 10px;
+            font-family: 'Heavitas';
+            color: #17171e;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+    .battle-card-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: x-large;
+        label {
+            margin: 20px;
+            color: #de2828;
+            cursor: pointer;
+        }
+    }
+    div {
+        width: 100%;
+    }
+}
+
+.battle-card:hover {
+    box-shadow: 0 0 10px #478347;
+    transform: scale(1.1);
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #478347;
+    margin: 20px;
+    .material-icons {
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 0 10px transparent;
+        transition: all 0.5s;
+        font-size: xx-large;
+    }
+    .material-icons:hover {
+        transform: skewX(0) scale(1.3) !important;
+    }
+}

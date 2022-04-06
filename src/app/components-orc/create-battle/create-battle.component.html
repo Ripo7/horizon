@@ -1,0 +1,45 @@
+<ng-container *ngIf="loader">
+    <ngx-spinner
+    [fullScreen]="false"
+    bdColor="rgba(0, 0, 0, 0.7)"
+    size="medium"
+    type="la-ball-clip-rotate-multiple"
+  >
+  </ngx-spinner>
+</ng-container>
+
+<div class="create-battle-wrapper" *ngIf="!loader">
+    <div style="display: flex; align-items: center;">
+        <div class="name">
+            Name
+        </div>
+        <input [(ngModel)]="battleNameText" class="input-name"/>
+    </div>
+    <div class="choose">Choose your Orc</div>
+    <div class="nft-list" *ngIf="nftOrcList.length > 0">
+        <div *ngFor="let orc of nftOrcList" class="nft" (click)="selectOrc(orc)">
+            <img [src]="orc.image" [ngClass]="{'nft-selected': orc === selectedOrc, 'nft-img': true}"/>
+            <label>
+                {{orc.name}}
+            </label>
+        </div>
+    </div>
+    <div class="choose">Choose your car</div>
+    <div class="nft-list" *ngIf="nftOrcCarList.length > 0">
+        <div *ngFor="let car of nftOrcCarList" class="nft" (click)="selectCar(car)">
+            <img [src]="car.image" [ngClass]="{'nft-selected': car === selectedCar, 'nft-img': true}"/>
+            <label>
+                {{car.name}}
+            </label>
+        </div>
+    </div>
+    <div [ngClass]="{'battle-ready': isBattleReady(), 'button-create': true}" (click)="createBattle()">
+        Create
+    </div>
+</div>
+
+<div class="back" (click)="back()" *ngIf="!loader">
+    <span class="material-icons">
+        cancel
+    </span>
+</div>

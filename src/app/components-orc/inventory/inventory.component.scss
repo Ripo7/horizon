@@ -9,12 +9,12 @@
         margin: 20px; 
         font-size: xx-large; 
         font-weight: bold; 
-        color: #00ff00;
+        color: #478347;
     }
 
     .no-nft {
         font-size: medium;
-        color: #ff8700;
+        color: #de2828;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -25,8 +25,8 @@
             border-radius: 10px;
             padding: 10px 20px;
             transition: box-shadow 0.5s;
-            border:solid 2px #00ff00;
-            color: #00ff00;
+            border:solid 2px #478347;
+            color: #478347;
             font-size: medium;
             cursor: pointer;
             label {
@@ -35,7 +35,7 @@
         }
 
         .link:hover {
-            box-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 10px #478347;
         }
     }
 
@@ -56,7 +56,7 @@
                 margin: 10px;
                 margin-top: 20px;
                 font-size: large;
-                color: #ff8700;
+                color: #de2828;
             }
 
         }
@@ -72,15 +72,15 @@
 }
 
 .nft-img:hover {
-    border: solid 3px #00ff00;
-    box-shadow: 0 0 10px #00ff00;
+    border: solid 3px #478347;
+    box-shadow: 0 0 10px #478347;
     transform: skewX(0) scale(1.1) !important;
 }
 
 .loading {
     font-size: x-large; 
     font-family: 'Heavitas';
-    color: #00ff00;
+    color: #478347;
 }
 
 .nft-detail-wrapper {
@@ -100,10 +100,10 @@
     .details {
         margin-top: 20px;
         display: flex;
-        color: #00ff00;
+        color: #478347;
         flex-wrap: wrap;
         justify-content: space-evenly;
-        color: #00ff00;
+        color: #478347;
         label {
             margin: 20px;
         }
@@ -111,8 +111,8 @@
 }
 
 .nft-img-detail {
-    border: solid 3px #00ff00;
-    box-shadow: 0 0 10px #00ff00;
+    border: solid 3px #478347;
+    box-shadow: 0 0 10px #478347;
     border-radius: 20px;
 }
 
@@ -120,7 +120,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    color: #00ff00;
+    color: #478347;
     margin: 20px;
     .material-icons {
         cursor: pointer;
